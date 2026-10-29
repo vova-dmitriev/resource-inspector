@@ -15,7 +15,8 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",
     "mcp": "node dist/cli.js mcp",
-    "map": "node dist/cli.js map"
+    "map": "node dist/cli.js map",
+    "hub": "node dist/cli.js hub"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.32.2",

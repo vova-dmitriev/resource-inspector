@@ -36,6 +36,30 @@ await main(command, argumentsList)
 async function main(commandName: string | undefined, argumentsList: readonly string[]) {
   const options = readOptions(argumentsList)
 
+  if (commandName === "mcp" && options.projects) {
+    const catalog = createProjectCatalog(resolve(options.projects))
+    const runtimes = new Map<string, ReturnType<typeof createProjectRuntime>>()
+    const server = createInspectorMcpServer(undefined, {
+      list: () => catalog.list(),
+      resolve: (id) => catalog.resolve(id),
+      async service(id) {
+        let runtime = runtimes.get(id)
+
+        if (!runtime) {
+          runtime = createProjectRuntime(await catalog.resolve(id))
+          runtimes.set(id, runtime)
+          runtime.catch(() => runtimes.delete(id))
+        }
+
+        return (await runtime).service
+      },
+    })
+
+    await server.connect(new StdioServerTransport())
+
+    return
+  }
+
   if (commandName === "hub") {
     const registryPath = resolve(options.projects ?? join(homedir(), ".resource-inspector", "projects.json"))
     const catalog = createProjectCatalog(registryPath)

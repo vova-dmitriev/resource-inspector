@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it } from "vitest"
 import { createProjectHub } from "../project-hub.js"
 
 const mapHtml =
-  '<script type="application/json" id="map-data">{"resourceProfiles":[{"id":"local"}],"tabs":[{"diagrams":[{"nodes":[{"id":"api","resourceRefsByProfile":{"local":["api"]}}]}]}]}</script>'
+  '<!doctype html><html><head><meta charset="utf-8"></head><body><script type="application/json" id="map-data">{"resourceProfiles":[{"id":"local"}],"tabs":[{"diagrams":[{"nodes":[{"id":"api","resourceRefsByProfile":{"local":["api"]}}]}]}]}</script></body></html>'
 const projects = [
   {
     id: "tickets",
@@ -38,7 +38,9 @@ describe("createProjectHub", () => {
         { id: "billing", name: "Billing" },
       ],
     })
-    await expect(fetch(`${origin}/projects/tickets/`).then((response) => response.text())).resolves.toContain('id="map-data"')
+    const ticketMap = await fetch(`${origin}/projects/tickets/`).then((response) => response.text())
+    expect(ticketMap).toContain('id="map-data"')
+    expect(ticketMap).toContain('name="resource-inspector-base-path" content="/projects/tickets"')
   })
 
   it("keeps identical profile and resource IDs isolated by project URL", async () => {

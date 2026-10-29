@@ -10,14 +10,14 @@
 :root[data-theme="light"]{color-scheme:light}
 *{box-sizing:border-box}html{min-height:100%;overflow-y:auto}body{min-height:100vh;margin:0;background:var(--surface);color:var(--text)}main{width:100%;padding:clamp(1rem,2.5vw,2.5rem)}
 header{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem}h1{margin:0;font-size:clamp(1.4rem,2.4vw,2rem)}.header-controls{display:flex;align-items:center;gap:.5rem}.language-toggle{min-width:3rem}.theme-toggle{display:grid;flex:none;width:2.5rem;height:2.5rem;place-items:center;padding:0;border-radius:50%}.theme-toggle svg{width:1.3rem;height:1.3rem}
-.tabs{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1.25rem}button{border:1px solid var(--border);border-radius:.65rem;background:transparent;color:inherit;padding:.55rem .8rem;font:inherit;cursor:pointer}button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.tabs{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1.25rem}button{border:1px solid var(--border);border-radius:.65rem;background:transparent;color:inherit;padding:.55rem .8rem;font:inherit;cursor:pointer}button:focus-visible,.resource-hub-link:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 button[aria-selected=true],button[aria-pressed=true]{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--surface))}[hidden]{display:none!important}
 figure{margin:0;overflow:auto;border:1px solid var(--border);border-radius:.75rem;background:color-mix(in srgb,var(--text) 2%,var(--surface))}.diagram{display:block;width:100%;height:auto;min-width:760px}
 .node rect{stroke:#bcc6d1;stroke-width:1.5;fill:#e8f2ff}.node[data-kind="service"] rect{fill:#fff0e5}.node[data-kind="entity"] rect{fill:#e7f5ec}.node[data-kind="external"] rect{fill:var(--surface);stroke-dasharray:6 5}.node text{fill:#20242a;text-anchor:middle;pointer-events:none}.node .subtitle{fill:#68717c;font-size:13px}.node[role="button"]{cursor:pointer}.node[role="button"]:focus-visible rect{stroke:var(--accent);stroke-width:3}
 .edge{fill:none;stroke:var(--line);stroke-width:1.7;stroke-linecap:square;stroke-linejoin:miter;vector-effect:non-scaling-stroke}.edge-label{fill:var(--muted);font-size:13px;text-anchor:middle;paint-order:stroke;stroke:var(--surface);stroke-width:5px;stroke-linejoin:round}
 .node.is-active rect,.edge.is-active{stroke:var(--accent);stroke-width:3}.node.is-connected rect{stroke:var(--accent);stroke-width:2.5}.edge-hit-area{fill:none;stroke:transparent;stroke-width:14;pointer-events:stroke;cursor:help}.edge-tooltip{position:fixed;z-index:10;max-width:min(28rem,calc(100vw - 2rem));padding:.55rem .75rem;border:1px solid var(--border);border-radius:.55rem;background:var(--surface);color:var(--text);box-shadow:0 5px 20px #0002;pointer-events:none}
 .endpoint-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:.5rem;margin:1.25rem 0}.endpoint-list button{text-align:left;overflow-wrap:anywhere}.endpoint-details{border-top:1px solid var(--border);padding-top:1rem;scroll-margin-top:1rem}.endpoint-details h2{margin:.3rem 0;font-size:1.15rem}.endpoint-details p{color:var(--muted)}
-.resource-controls{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin:0 0 1rem}.resource-controls label{display:flex;align-items:center;gap:.5rem}.resource-controls select,.resource-settings input{max-width:100%;border:1px solid var(--border);border-radius:.5rem;background:var(--surface);color:var(--text);padding:.5rem;font:inherit}.resource-panel{margin:0 0 1rem;padding:1rem;border:1px solid var(--border);border-radius:.75rem;background:color-mix(in srgb,var(--text) 2%,var(--surface))}.resource-panel header{margin:0 0 .75rem}.resource-panel h2,.resource-panel h3{margin:.25rem 0}.resource-item{display:grid;grid-template-columns:minmax(10rem,1fr) minmax(12rem,2fr);gap:.5rem 1rem;padding:.8rem 0;border-top:1px solid var(--border)}.resource-status{color:var(--muted)}.resource-status[data-state="running"]{color:#188449}.resource-status[data-state="stopped"],.resource-status[data-state="degraded"],.resource-status[data-state="unreachable"]{color:#c74343}.resource-status[data-state="starting"]{color:#a35d00}.resource-result{grid-column:1/-1}.resource-settings{display:grid;gap:.75rem}.resource-setting{display:grid;grid-template-columns:minmax(10rem,1fr) minmax(12rem,2fr);align-items:center;gap:.5rem}.resource-notice{color:var(--muted)}
+.resource-controls{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin:0 0 1rem}.resource-controls label{display:flex;align-items:center;gap:.5rem}.resource-profile-select,.resource-settings input{max-width:100%;min-height:2.75rem;border:1px solid var(--border);border-radius:.7rem;background:var(--surface);color:var(--text);padding:.55rem .8rem;font:inherit}.resource-profile-select{min-width:14rem;appearance:none;box-shadow:0 1px 2px #0001;background-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2716%27 height=%2716%27 viewBox=%270 0 16 16%27 fill=%27none%27 stroke=%27%23707881%27 stroke-width=%271.5%27%3E%3Cpath d=%27m4 6 4 4 4-4%27/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .8rem center;padding-right:2.5rem}.resource-controls label{font-weight:600}.resource-hub-link{display:inline-flex;min-height:2.75rem;align-items:center;padding:.55rem .8rem;border:1px solid var(--border);border-radius:.7rem;color:inherit;text-decoration:none}.resource-hub-link:hover{border-color:var(--accent);color:var(--accent)}.resource-panel{width:min(54rem,calc(100vw - 2rem));max-height:min(84vh,60rem);padding:1.25rem;border:1px solid var(--border);border-radius:1rem;background:var(--surface);color:var(--text);box-shadow:0 24px 80px #0005;overflow:auto}.resource-panel::backdrop{background:#0b1018a8;backdrop-filter:blur(3px)}.resource-panel header{position:sticky;top:-1.25rem;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:-1.25rem -1.25rem 1rem;padding:1rem 1.25rem;background:var(--surface);border-bottom:1px solid var(--border)}.resource-view-controls{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:.35rem}.resource-view-controls button{min-height:2.2rem;padding:.35rem .65rem;font-size:.9rem}.resource-view-controls button[aria-pressed="true"]{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--surface))}.resource-panel h2,.resource-panel h3{margin:.25rem 0}.resource-item{display:grid;grid-template-columns:minmax(10rem,1fr) minmax(12rem,2fr);gap:.5rem 1rem;padding:.8rem 0;border-top:1px solid var(--border)}.resource-status{color:var(--muted)}.resource-status[data-state="running"]{color:#188449}.resource-status[data-state="stopped"],.resource-status[data-state="degraded"],.resource-status[data-state="unreachable"]{color:#c74343}.resource-status[data-state="starting"]{color:#a35d00}.resource-result{grid-column:1/-1}.resource-settings{display:grid;gap:.75rem}.resource-setting{display:grid;grid-template-columns:minmax(10rem,1fr) minmax(12rem,2fr);align-items:center;gap:.5rem}.resource-notice{color:var(--muted)}
 .contract-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1rem}.contract-grid h3,.schema-heading{margin:.5rem 0;font-size:1rem;font-weight:600}
 pre{max-width:100%;margin:0;overflow:auto;padding:1rem;border-radius:.6rem;background:color-mix(in srgb,var(--text) 5%,var(--surface));white-space:pre-wrap;overflow-wrap:anywhere}pre>span{display:block}.json-depth-0{color:var(--muted)}.json-depth-1{color:color-mix(in srgb,var(--text) 88%,#44799b)}.json-depth-2{color:color-mix(in srgb,var(--text) 88%,#63835b)}.json-depth-3{color:color-mix(in srgb,var(--text) 88%,#98774f)}.json-depth-4{color:color-mix(in srgb,var(--text) 88%,#806997)}
 details{margin:.4rem 0 .4rem 1rem}.schema-root{margin-left:0}.schema-row{padding:.2rem .35rem;border-radius:.3rem}.schema-depth-0>.schema-summary{background:color-mix(in srgb,#75849a 9%,var(--surface))}.schema-depth-1>.schema-summary{background:color-mix(in srgb,#5482a1 8%,var(--surface))}.schema-depth-2>.schema-summary{background:color-mix(in srgb,#66865d 8%,var(--surface))}.schema-depth-3>.schema-summary{background:color-mix(in srgb,#9c805a 8%,var(--surface))}.schema-depth-4>.schema-summary{background:color-mix(in srgb,#8a6f9f 8%,var(--surface))}.schema-summary{display:inline-flex;align-items:baseline;gap:.45rem;padding:.15rem .35rem;border-radius:.3rem;cursor:pointer}.schema-name,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.schema-name{color:color-mix(in srgb,var(--text) 82%,#3c7090)}.schema-type{color:var(--muted);font-size:.9em}.schema-required{font-size:.75em;color:var(--muted)}.enum-values{display:flex;flex-wrap:wrap;gap:.3rem;margin:.3rem 0 .3rem 1rem}.enum-value{padding:.1rem .35rem;border-radius:.3rem;background:color-mix(in srgb,#74805f 10%,var(--surface));font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
@@ -27,13 +27,16 @@ details{margin:.4rem 0 .4rem 1rem}.schema-root{margin-left:0}.schema-row{padding
 <body>
 <main>
 <header><h1>__TITLE__</h1><div class="header-controls"><button class="language-toggle" type="button" aria-label="Switch language to English" title="Switch language to English">EN</button><button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch to light theme"></button></div></header>
-<div class="resource-controls" hidden><label><span class="resource-profile-label"></span><select class="resource-profile-select"></select></label><button class="resource-settings-button" type="button"></button></div>
-<section class="resource-panel" aria-live="polite" hidden><header><h2 class="resource-panel-title"></h2><button class="resource-panel-close" type="button"></button></header><div class="resource-inspector-body"></div><div class="resource-settings-body" hidden></div></section>
+<div class="resource-controls" hidden><label><span class="resource-profile-label"></span><select class="resource-profile-select"></select></label><button class="resource-settings-button" type="button"></button><a class="resource-hub-link" href="/" hidden>Проекты</a></div>
+<dialog class="resource-panel" aria-labelledby="resource-panel-title"><header><h2 class="resource-panel-title" id="resource-panel-title"></h2><button class="resource-panel-close" type="button"></button></header><div class="resource-inspector-body"></div><div class="resource-settings-body" hidden></div></dialog>
 <nav class="tabs" role="tablist"></nav><div class="panels"></div>
 </main>
 <script type="application/json" id="map-data">__MAP_DATA__</script>
 <script>
 const data = JSON.parse(document.getElementById("map-data").textContent)
+const inspectorBasePath = document.querySelector('meta[name="resource-inspector-base-path"]')?.content ?? ""
+const inspectorHubUrl = document.querySelector('meta[name="resource-inspector-hub-url"]')?.content ?? "/"
+const inspectorUrl = (path) => `${inspectorBasePath}${path}`
 const tabList = document.querySelector(".tabs")
 const panels = document.querySelector(".panels")
 const themeToggle = document.querySelector(".theme-toggle")
@@ -42,6 +45,7 @@ const resourceControls = document.querySelector(".resource-controls")
 const resourceProfileSelect = document.querySelector(".resource-profile-select")
 const resourceProfileLabel = document.querySelector(".resource-profile-label")
 const resourceSettingsButton = document.querySelector(".resource-settings-button")
+const resourceHubLink = document.querySelector(".resource-hub-link")
 const resourcePanel = document.querySelector(".resource-panel")
 const resourcePanelTitle = document.querySelector(".resource-panel-title")
 const resourcePanelClose = document.querySelector(".resource-panel-close")
@@ -97,11 +101,14 @@ function setLocaleControl() {
 }
 
 
-function element(name, attributes = {}, text) {
+function element(name, attributes = {}, ...children) {
   const item = document.createElement(name)
 
   for (const [key, value] of Object.entries(attributes)) item.setAttribute(key, value)
-  if (text !== undefined) item.textContent = text
+  for (const child of children) {
+    if (typeof child === "string") item.append(document.createTextNode(child))
+    else if (child instanceof Node) item.append(child)
+  }
 
   return item
 }
@@ -143,9 +150,12 @@ async function initializeResourceInspector() {
   resourceControls.hidden = false
   resourceProfileLabel.textContent = resourceText("resourceProfile", "Environment")
   resourceSettingsButton.textContent = resourceText("resourceSettings", "Connections")
+  if (inspectorBasePath) { resourceHubLink.hidden = false; resourceHubLink.href = inspectorHubUrl }
   resourcePanelClose.textContent = resourceText("resourceClose", "Close")
   resourcePanelClose.setAttribute("aria-label", resourcePanelClose.textContent)
-  resourcePanelClose.addEventListener("click", () => { resourcePanel.hidden = true })
+  resourcePanelClose.addEventListener("click", () => resourcePanel.close())
+  resourcePanel.addEventListener("click", (event) => { if (event.target === resourcePanel) resourcePanel.close() })
+  resourcePanel.addEventListener("close", () => { selectedResourceNode = undefined })
   resourceSettingsButton.addEventListener("click", () => { void openResourceSettings() })
   resourceProfileSelect.addEventListener("change", () => {
     try { localStorage.setItem(resourceProfileStorageKey, resourceProfileSelect.value) } catch {}
@@ -155,7 +165,7 @@ async function initializeResourceInspector() {
   const declared = data.resourceProfiles ?? []
   inspectorProfiles = declared.map(({ id, name, kind }) => ({ id, name, kind }))
   try {
-    const response = await fetch("/__resource-inspector/profiles", { credentials: "same-origin", redirect: "error" })
+    const response = await fetch(inspectorUrl("/__resource-inspector/profiles"), { credentials: "same-origin", redirect: "error" })
     if (!response.ok) throw new Error()
     const payload = await response.json()
     inspectorProfiles = payload.profiles.filter((profile) => declared.some((item) => item.id === profile.id))
@@ -171,13 +181,13 @@ async function initializeResourceInspector() {
   if (selected) resourceProfileSelect.value = selected
   if (inspectorAvailable) {
     await loadInspectorResources()
-    window.setInterval(() => { if (!resourcePanel.hidden && selectedResourceNode && resourceSettingsBody.hidden) void refreshResourceStatuses() }, 15_000)
+    window.setInterval(() => { if (resourcePanel.open && selectedResourceNode && resourceSettingsBody.hidden) void refreshResourceStatuses() }, 15_000)
   }
 }
 
 async function loadInspectorResources() {
   try {
-    const response = await fetch(`/__resource-inspector/resources?profileId=${encodeURIComponent(resourceProfileSelect.value)}`, { credentials: "same-origin", redirect: "error" })
+    const response = await fetch(inspectorUrl(`/__resource-inspector/resources?profileId=${encodeURIComponent(resourceProfileSelect.value)}`), { credentials: "same-origin", redirect: "error" })
     if (!response.ok) throw new Error()
     inspectorResources = (await response.json()).resources
   } catch {
@@ -187,7 +197,7 @@ async function loadInspectorResources() {
 
 async function renderResourceNode(node) {
   selectedResourceNode = node
-  resourcePanel.hidden = false
+  if (!resourcePanel.open) resourcePanel.showModal()
   resourceSettingsBody.hidden = true
   resourceInspectorBody.hidden = false
   resourcePanelTitle.textContent = localized("nodes", `${node.diagramId}:${node.id}`, "title", node.title)
@@ -222,14 +232,19 @@ function createResourceItem(resource) {
   const controls = element("div", { class: "resource-view-controls" })
   const metadata = element("div")
   metadata.append(title, status)
-  const views = resource.views ?? []
-  const select = element("select", { "aria-label": `${resourceText("resourceView", "View")}: ${resource.name}` })
-  for (const view of views) select.append(element("option", { value: view }, view))
-  const inspect = element("button", { type: "button" }, resourceText("resourceRefresh", "Inspect"))
+  const views = (resource.views ?? []).filter((view) => view !== "status")
   const result = element("pre", { class: "resource-result", hidden: "" })
-  inspect.addEventListener("click", () => { void inspectResource(resource.id, select.value, result) })
-  controls.append(select, inspect)
+  for (const [index, view] of views.entries()) {
+    const inspect = element("button", { type: "button", "aria-pressed": String(index === 0) }, view)
+    inspect.addEventListener("click", () => {
+      controls.querySelectorAll("button").forEach((button) => button.setAttribute("aria-pressed", String(button === inspect)))
+      void inspectResource(resource.id, view, result)
+    })
+    controls.append(inspect)
+  }
+  controls.hidden = views.length === 0
   item.append(metadata, controls, result)
+  if (views.length) void inspectResource(resource.id, views[0], result)
   return item
 }
 
@@ -241,7 +256,7 @@ async function refreshResourceStatuses() {
     const status = item.querySelector(".resource-status")
     try {
       const query = new URLSearchParams({ profileId: resourceProfileSelect.value, resourceId: id })
-      const response = await fetch(`/__resource-inspector/status?${query}`, { credentials: "same-origin", redirect: "error" })
+      const response = await fetch(inspectorUrl(`/__resource-inspector/status?${query}`), { credentials: "same-origin", redirect: "error" })
       if (!response.ok) throw new Error()
       const value = await response.json()
       status.dataset.state = value.state ?? "unknown"
@@ -258,7 +273,7 @@ async function inspectResource(resourceId, view, result) {
   result.hidden = false
   result.textContent = resourceText("resourceLoading", "Loading…")
   try {
-    const response = await fetch("/__resource-inspector/inspect", {
+    const response = await fetch(inspectorUrl("/__resource-inspector/inspect"), {
       method: "POST",
       credentials: "same-origin",
       redirect: "error",
@@ -279,7 +294,7 @@ function resourceStateLabel(state) {
 }
 
 async function openResourceSettings() {
-  resourcePanel.hidden = false
+  if (!resourcePanel.open) resourcePanel.showModal()
   resourceInspectorBody.hidden = true
   resourceSettingsBody.hidden = false
   resourcePanelTitle.textContent = resourceText("resourceSettingsTitle", "Connection settings")
@@ -289,7 +304,7 @@ async function openResourceSettings() {
     return
   }
   try {
-    const response = await fetch("/__resource-inspector/settings", { credentials: "same-origin", redirect: "error" })
+    const response = await fetch(inspectorUrl("/__resource-inspector/settings"), { credentials: "same-origin", redirect: "error" })
     if (!response.ok) throw new Error()
     const payload = await response.json()
     const profile = payload.profiles.find((item) => item.id === resourceProfileSelect.value)
@@ -309,7 +324,7 @@ async function openResourceSettings() {
       if (!Object.keys(values).length) return
       save.disabled = true
       try {
-        const saved = await fetch("/__resource-inspector/settings/secrets", {
+        const saved = await fetch(inspectorUrl("/__resource-inspector/settings/secrets"), {
           method: "POST", credentials: "same-origin", redirect: "error", headers: { "content-type": "application/json" },
           body: JSON.stringify({ profileId: resourceProfileSelect.value, values }),
         })

@@ -20,9 +20,25 @@ pnpm --dir /path/to/resource-inspector map --map /absolute/path/to/architecture-
 
 Open the printed `http://127.0.0.1:8765` URL. Click a bound node in the existing map to view service status and its available data. Status refreshes every 15 seconds while the node panel is open. The viewer serves the same generated map; it does not create a separate dashboard.
 
+To manage several project maps from one screen, start the hub instead. It opens the project registry at `~/.resource-inspector/projects.json`; add, edit, and remove map/config/environment paths in the UI:
+
+```sh
+pnpm --dir /path/to/resource-inspector hub
+```
+
 ## MCP client
 
-Build the package before registering it. Register an MCP stdio server with command `pnpm` and arguments `--dir /path/to/resource-inspector mcp --config /absolute/path/to/profiles.json --env /absolute/path/to/.env`. It exposes `list_profiles`, `list_resources`, `resource_status`, and `inspect_resource` tools. Each request names the selected profile and resource explicitly.
+Build the package before registering it. Register an MCP stdio server with command `pnpm` and arguments `--dir /path/to/resource-inspector mcp --config /absolute/path/to/profiles.json --env /absolute/path/to/.env`. It exposes `list_profiles`, `list_resources`, `resource_status`, `inspect_resource`, and `ask_services` tools.
+
+`ask_services` accepts a natural-language question and an explicit `profileId`, then returns bounded evidence from that local or cloud profile: health checks, logs, request history, queue summaries, and database table names. The MCP host uses that evidence to answer; Resource Inspector does not execute shell commands, arbitrary SQL, queue jobs, or question-derived log queries.
+
+For the multi-project hub, point MCP at the same registry used by the viewer:
+
+```sh
+node dist/cli.js mcp --projects ~/.resource-inspector/projects.json
+```
+
+That mode exposes `list_projects` and `ask_project`. `ask_project` scopes evidence collection to one registered project and the explicitly selected local or cloud profile. Database rows and queue job payloads are excluded from question summaries; use `inspect_resource` for an explicitly selected, allowlisted view.
 
 ## Profiles and secrets
 

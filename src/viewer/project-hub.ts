@@ -1,5 +1,6 @@
 import { type IncomingMessage, type ServerResponse, createServer } from "node:http"
-import { assertBoundResource, assertProfile, filterSettings, isRecord } from "./map-access.js"
+import { assertBoundResource, assertProfile, filterSettings, injectInspectorBasePath, isRecord } from "./map-access.js"
+import { renderProjectHubPage } from "./project-hub-page.js"
 import { isLocalHost, isValidOrigin, readJsonBody, sendJson } from "./http-utils.js"
 import type { ProjectRuntime } from "../projects/runtime.js"
 import type { ProjectInput, ProjectRecord, ProjectSummary } from "../projects/types.js"
@@ -70,6 +71,14 @@ async function handleRequest(
       return sendJson(response, 200, { projects: await catalog.list() })
     }
 
+    const projectDetail = url.pathname.match(/^\/__resource-inspector\/projects\/([^/]+)$/)
+
+    if (request.method === "GET" && projectDetail) {
+      const project = await catalog.resolve(decodeURIComponent(projectDetail[1] ?? ""))
+
+      return sendJson(response, 200, { project })
+    }
+
     if (request.method === "POST" && url.pathname === "/__resource-inspector/projects") {
       const project = await catalog.add(parseProjectInput(await readJsonBody(request)))
 
@@ -103,7 +112,8 @@ async function handleRequest(
       const projectPath = projectRoute[2] ?? ""
       const selectedRuntime = await runtime(projectId)
 
-      if (request.method === "GET" && projectPath === "") return sendHtml(response, selectedRuntime.html)
+      if (request.method === "GET" && projectPath === "")
+        return sendHtml(response, injectInspectorBasePath(selectedRuntime.html, `/projects/${encodeURIComponent(projectId)}`))
 
       if (projectPath.startsWith("__resource-inspector/")) {
         return handleInspectorRequest(request, response, url, projectPath.slice("__resource-inspector/".length), selectedRuntime)
@@ -111,7 +121,7 @@ async function handleRequest(
     }
 
     if (request.method === "GET" && url.pathname === "/") {
-      return sendHtml(response, renderHubPlaceholder())
+      return sendHtml(response, renderProjectHubPage(await catalog.list()))
     }
 
     return sendJson(response, 404, { error: OperationalText.NotFound })
@@ -220,10 +230,6 @@ function sendHtml(response: ServerResponse, html: string) {
     "x-content-type-options": HubResponse.Nosniff,
   })
   response.end(html)
-}
-
-function renderHubPlaceholder() {
-  return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Resource Inspector</title></head><body><main><h1>Resource Inspector</h1><p>Connect a project to inspect its architecture map.</p></main></body></html>'
 }
 
 function resourceBindings(map: ProjectRuntime["map"], profileId: string) {
