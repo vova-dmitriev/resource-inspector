@@ -56,10 +56,7 @@ export async function loadProfileConfiguration(
   environmentPath: string,
   processEnvironment: NodeJS.ProcessEnv = process.env,
 ) {
-  const document = ProfileDocumentSchema.parse(JSON.parse(await readFile(configurationPath, "utf8")))
-
-  assertUniqueProfiles(document.profiles)
-  assertUniqueSecretVariables(document.profiles as readonly ProfileConfiguration[])
+  const document = parseProfileConfigurationDocument(JSON.parse(await readFile(configurationPath, "utf8")))
   const fileValues = parseEnvironmentFile(await readOptionalFile(environmentPath))
 
   const processValues = Object.fromEntries(
@@ -73,6 +70,15 @@ export async function loadProfileConfiguration(
     connectorModules: document.connectorModules ?? [],
     environment: { ...fileValues, ...processValues, ...overrides },
   }
+}
+
+export function parseProfileConfigurationDocument(value: unknown) {
+  const document = ProfileDocumentSchema.parse(value)
+
+  assertUniqueProfiles(document.profiles)
+  assertUniqueSecretVariables(document.profiles as readonly ProfileConfiguration[])
+
+  return document
 }
 
 export async function writeSecretOverrides(configurationPath: string, profileId: string, values: Readonly<Record<string, string>>) {
