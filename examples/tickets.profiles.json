@@ -1,0 +1,152 @@
+{
+  "profiles": [
+    {
+      "id": "local",
+      "name": "Local development",
+      "kind": "local",
+      "connectors": [
+        {
+          "id": "local-processes",
+          "type": "http-health",
+          "resources": [
+            { "id": "web-process", "name": "Frontend process" },
+            { "id": "api-process", "name": "Backend process" }
+          ],
+          "options": {
+            "targets": {
+              "web-process": "http://127.0.0.1:3000/",
+              "api-process": "http://127.0.0.1:4000/api/v1/health/live"
+            }
+          },
+          "environment": {
+            "web-process": "WEB_HEALTH_URL",
+            "api-process": "API_HEALTH_URL"
+          }
+        },
+        {
+          "id": "local-docker",
+          "type": "docker",
+          "resources": [
+            { "id": "postgres-container", "name": "PostgreSQL container" },
+            { "id": "redis-container", "name": "Redis container" },
+            { "id": "loki-container", "name": "Loki container" },
+            { "id": "grafana-container", "name": "Grafana container" },
+            { "id": "mailpit-container", "name": "Mailpit container" }
+          ],
+          "options": {
+            "containers": {
+              "postgres-container": "tickets-local-postgres-1",
+              "redis-container": "tickets-local-redis-1",
+              "loki-container": "tickets-local-loki-1",
+              "grafana-container": "tickets-local-grafana-1",
+              "mailpit-container": "tickets-local-mailpit-1"
+            }
+          }
+        },
+        {
+          "id": "local-database",
+          "type": "postgres",
+          "resources": [{ "id": "database", "name": "Application database" }],
+          "options": { "schema": "public" },
+          "environment": { "connectionString": "DATABASE_URL" }
+        },
+        {
+          "id": "local-queues",
+          "type": "bullmq",
+          "resources": [
+            { "id": "booking-fulfillment", "name": "Booking fulfillment" },
+            { "id": "provider-reconciliation", "name": "Provider reconciliation" },
+            { "id": "order-expiration", "name": "Order expiration" },
+            { "id": "notifications", "name": "Notifications" },
+            { "id": "outbox-dispatch", "name": "Outbox dispatch" },
+            { "id": "flight-search", "name": "Flight search" }
+          ],
+          "options": {
+            "queues": {
+              "booking-fulfillment": "booking-fulfillment",
+              "provider-reconciliation": "provider-reconciliation",
+              "order-expiration": "order-expiration",
+              "notifications": "notifications",
+              "outbox-dispatch": "outbox-dispatch",
+              "flight-search": "flight-search"
+            }
+          },
+          "environment": { "redisUrl": "REDIS_URL" }
+        },
+        {
+          "id": "local-logs",
+          "type": "loki",
+          "resources": [
+            { "id": "frontend-logs", "name": "Frontend logs" },
+            { "id": "backend-logs", "name": "Backend logs" },
+            { "id": "worker-logs", "name": "Worker logs" }
+          ],
+          "options": {
+            "endpoint": "http://127.0.0.1:3100",
+            "services": {
+              "frontend-logs": "tickets-web",
+              "backend-logs": "tickets-api",
+              "worker-logs": "tickets-worker"
+            }
+          },
+          "environment": { "endpoint": "LOKI_URL", "token": "LOKI_TOKEN" }
+        }
+      ]
+    },
+    {
+      "id": "cloud-staging",
+      "name": "Cloud staging",
+      "kind": "cloud",
+      "connectors": [
+        {
+          "id": "staging-processes",
+          "type": "http-health",
+          "resources": [
+            { "id": "web-process", "name": "Frontend process" },
+            { "id": "api-process", "name": "Backend process" }
+          ],
+          "options": {
+            "targets": {
+              "web-process": "https://web.staging.example.test/",
+              "api-process": "https://api.staging.example.test/api/v1/health/live"
+            }
+          },
+          "environment": {
+            "web-process": "WEB_HEALTH_URL_STAGING",
+            "api-process": "API_HEALTH_URL_STAGING"
+          }
+        },
+        {
+          "id": "staging-database",
+          "type": "postgres",
+          "resources": [{ "id": "database", "name": "Application database" }],
+          "options": { "schema": "public" },
+          "environment": { "connectionString": "DATABASE_URL_STAGING" }
+        },
+        {
+          "id": "staging-queues",
+          "type": "bullmq",
+          "resources": [{ "id": "booking-fulfillment", "name": "Booking fulfillment" }],
+          "options": { "queues": { "booking-fulfillment": "booking-fulfillment" } },
+          "environment": { "redisUrl": "REDIS_URL_STAGING" }
+        },
+        {
+          "id": "staging-logs",
+          "type": "loki",
+          "resources": [
+            { "id": "frontend-logs", "name": "Frontend logs" },
+            { "id": "backend-logs", "name": "Backend logs" }
+          ],
+          "options": {
+            "endpoint": "https://logs.staging.example.test",
+            "services": {
+              "frontend-logs": "tickets-web",
+              "backend-logs": "tickets-api"
+            }
+          },
+          "environment": { "endpoint": "LOKI_URL_STAGING", "token": "LOKI_TOKEN_STAGING" }
+        }
+      ]
+    }
+  ]
+}

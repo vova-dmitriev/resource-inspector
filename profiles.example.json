@@ -1,0 +1,144 @@
+{
+  "profiles": [
+    {
+      "id": "local",
+      "name": "Local",
+      "kind": "local",
+      "connectors": [
+        {
+          "id": "local-processes",
+          "type": "http-health",
+          "resources": [
+            { "id": "frontend-process", "name": "Frontend process" },
+            { "id": "backend-process", "name": "Backend process" }
+          ],
+          "options": {
+            "targets": {
+              "frontend-process": "http://127.0.0.1:3000/",
+              "backend-process": "http://127.0.0.1:4000/health"
+            }
+          },
+          "environment": {
+            "frontend-process": "FRONTEND_HEALTH_URL_LOCAL",
+            "backend-process": "BACKEND_HEALTH_URL_LOCAL"
+          }
+        },
+        {
+          "id": "local-containers",
+          "type": "docker",
+          "resources": [
+            { "id": "database-container", "name": "Database container" },
+            { "id": "queue-container", "name": "Queue container" },
+            { "id": "logs-container", "name": "Log store container" }
+          ],
+          "options": {
+            "containers": {
+              "database-container": "project-postgres-1",
+              "queue-container": "project-redis-1",
+              "logs-container": "project-loki-1"
+            }
+          }
+        },
+        {
+          "id": "local-database",
+          "type": "postgres",
+          "resources": [{ "id": "database", "name": "Application database" }],
+          "options": { "schema": "public" },
+          "environment": { "connectionString": "DATABASE_URL_LOCAL" }
+        },
+        {
+          "id": "local-queues",
+          "type": "bullmq",
+          "resources": [
+            { "id": "job-queue", "name": "Job queue" },
+            { "id": "email-queue", "name": "Email queue" }
+          ],
+          "options": {
+            "queues": {
+              "job-queue": "jobs",
+              "email-queue": "emails"
+            }
+          },
+          "environment": { "redisUrl": "REDIS_URL_LOCAL" }
+        },
+        {
+          "id": "local-logs",
+          "type": "loki",
+          "resources": [
+            { "id": "frontend-logs", "name": "Frontend logs" },
+            { "id": "backend-logs", "name": "Backend logs" }
+          ],
+          "options": {
+            "endpoint": "http://127.0.0.1:3100",
+            "services": {
+              "frontend-logs": "frontend",
+              "backend-logs": "backend"
+            }
+          },
+          "environment": {
+            "endpoint": "LOKI_URL_LOCAL",
+            "token": "LOKI_TOKEN_LOCAL"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cloud",
+      "name": "Cloud",
+      "kind": "cloud",
+      "connectors": [
+        {
+          "id": "cloud-processes",
+          "type": "http-health",
+          "resources": [
+            { "id": "frontend-process", "name": "Frontend process" },
+            { "id": "backend-process", "name": "Backend process" }
+          ],
+          "options": {
+            "targets": {
+              "frontend-process": "https://frontend.example.invalid/health",
+              "backend-process": "https://api.example.invalid/health"
+            }
+          },
+          "environment": {
+            "frontend-process": "FRONTEND_HEALTH_URL_CLOUD",
+            "backend-process": "BACKEND_HEALTH_URL_CLOUD"
+          }
+        },
+        {
+          "id": "cloud-database",
+          "type": "postgres",
+          "resources": [{ "id": "database", "name": "Application database" }],
+          "options": { "schema": "public" },
+          "environment": { "connectionString": "DATABASE_URL_CLOUD" }
+        },
+        {
+          "id": "cloud-queues",
+          "type": "bullmq",
+          "resources": [{ "id": "job-queue", "name": "Job queue" }],
+          "options": { "queues": { "job-queue": "jobs" } },
+          "environment": { "redisUrl": "REDIS_URL_CLOUD" }
+        },
+        {
+          "id": "cloud-logs",
+          "type": "loki",
+          "resources": [
+            { "id": "frontend-logs", "name": "Frontend logs" },
+            { "id": "backend-logs", "name": "Backend logs" }
+          ],
+          "options": {
+            "endpoint": "https://logs.example.invalid",
+            "services": {
+              "frontend-logs": "frontend",
+              "backend-logs": "backend"
+            }
+          },
+          "environment": {
+            "endpoint": "LOKI_URL_CLOUD",
+            "token": "LOKI_TOKEN_CLOUD"
+          }
+        }
+      ]
+    }
+  ]
+}

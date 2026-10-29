@@ -1,0 +1,291 @@
+{
+  "title": "Sample booking architecture",
+  "resourceProfiles": [
+    { "id": "local", "name": "Local development", "kind": "local" },
+    { "id": "cloud-staging", "name": "Cloud staging", "kind": "cloud" }
+  ],
+  "tabs": [
+    {
+      "id": "booking",
+      "title": "Booking",
+      "endpointIds": [
+        "create-order"
+      ],
+      "diagrams": [
+        {
+          "id": "booking-flow",
+          "title": "Draft to order",
+          "viewBox": "0 0 640 220",
+          "nodes": [
+            {
+              "id": "browser",
+              "title": "Browser",
+              "subtitle": "web client",
+              "kind": "api",
+              "x": 20,
+              "y": 80,
+              "width": 170,
+              "height": 70,
+              "endpointIds": [
+                "create-order"
+              ],
+              "resourceRefsByProfile": {
+                "local": ["frontend-logs", "web-process"],
+                "cloud-staging": ["frontend-logs", "web-process"]
+              }
+            },
+            {
+              "id": "api",
+              "title": "Ticket API",
+              "subtitle": "orders",
+              "kind": "service",
+              "x": 430,
+              "y": 80,
+              "width": 180,
+              "height": 70,
+              "endpointIds": [
+                "create-order"
+              ],
+              "resourceRefsByProfile": {
+                "local": ["backend-logs", "api-process"],
+                "cloud-staging": ["backend-logs", "api-process"]
+              }
+            }
+          ],
+          "edges": [
+            {
+              "id": "browser-api",
+              "from": "browser",
+              "to": "api",
+              "path": "M 190 115 H 430",
+              "label": "POST /orders",
+              "labelX": 310,
+              "labelY": 104
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "endpoints": [
+    {
+      "id": "create-order",
+      "method": "POST",
+      "path": "/api/v1/orders",
+      "description": "Creates an order from a checkout draft.",
+      "parameters": {
+        "headers": {
+          "cookie": "guest session"
+        }
+      },
+      "request": {
+        "draftId": "draft-01",
+        "passengers": [
+          {
+            "firstName": "Irina",
+            "lastName": "Ivanova"
+          }
+        ]
+      },
+      "responseType": "OrderDto",
+      "responseExample": {
+        "id": "order-01",
+        "status": "pending_reservation",
+        "passengers": [
+          {
+            "firstName": "Irina",
+            "lastName": "Ivanova"
+          }
+        ]
+      },
+      "responseSchema": {
+        "type": "object",
+        "required": [
+          "id",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending_reservation",
+              "action_required",
+              "fulfilled"
+            ]
+          },
+          "passengers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "firstName"
+              ],
+              "properties": {
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "i18n": {
+    "defaultLocale": "ru"
+  },
+  "translations": {
+    "ru": {
+      "page": {
+        "title": "Пример архитектуры бронирования"
+      },
+      "ui": {
+        "sectionsLabel": "Разделы карты архитектуры",
+        "switchLanguage": "Переключить язык на английский",
+        "switchToLightTheme": "Переключить на светлую тему",
+        "switchToDarkTheme": "Переключить на тёмную тему",
+        "required": "обязательное",
+        "response": "Ответ",
+        "unknownResponse": "Неизвестный ответ",
+        "parameters": "Параметры",
+        "noParameters": "Нет параметров",
+        "request": "Тело запроса",
+        "noRequestBody": "Нет тела запроса",
+        "responseExample": "Пример ответа",
+        "responseFields": "Поля ответа",
+        "resourceProfile": "Профиль ресурсов",
+        "resourceSettings": "Подключения",
+        "resourceClose": "Закрыть",
+        "resourceInspectorStatic": "Для просмотра данных откройте карту через локальный resource-inspector viewer.",
+        "resourceNoBinding": "В этом профиле для блока не настроены ресурсы.",
+        "resourceMissing": "ресурс не настроен",
+        "resourceLoading": "Загрузка…",
+        "resourceRefresh": "Открыть",
+        "resourceView": "Представление",
+        "resourceFailed": "Не удалось получить данные.",
+        "resourceSettingsTitle": "Настройки подключений",
+        "resourceSettingsHelp": "Значения из .env используются по умолчанию. Секреты доступны только для замены и сохраняются после успешной проверки подключения.",
+        "resourceConfigured": "Уже задано; введите новое значение для замены",
+        "resourceNotConfigured": "Не задано",
+        "resourceSave": "Сохранить и проверить",
+        "resourceSaved": "Настройки сохранены, подключение проверено.",
+        "resourceRunning": "Работает",
+        "resourceStarting": "Запускается",
+        "resourceStopped": "Остановлен",
+        "resourceDegraded": "Работает с ошибками",
+        "resourceUnreachable": "Недоступен",
+        "resourceUnknown": "Неизвестно"
+      },
+      "tabs": {
+        "booking": {
+          "title": "Бронирование"
+        }
+      },
+      "diagrams": {
+        "booking-flow": {
+          "title": "Черновик к заказу"
+        }
+      },
+      "nodes": {
+        "booking-flow:browser": {
+          "title": "Браузер",
+          "subtitle": "веб-клиент"
+        },
+        "booking-flow:api": {
+          "title": "Tickets API",
+          "subtitle": "заказы"
+        }
+      },
+      "edges": {
+        "booking-flow:browser-api": {
+          "label": "POST /orders",
+          "tooltip": "Браузер отправляет запрос создания заказа в API."
+        }
+      },
+      "endpoints": {
+        "create-order": {
+          "description": "Создаёт заказ из черновика бронирования."
+        }
+      }
+    },
+    "en": {
+      "page": {
+        "title": "Sample booking architecture"
+      },
+      "ui": {
+        "sectionsLabel": "Architecture map sections",
+        "switchLanguage": "Switch language to Russian",
+        "switchToLightTheme": "Switch to light theme",
+        "switchToDarkTheme": "Switch to dark theme",
+        "required": "required",
+        "response": "Response",
+        "unknownResponse": "Unknown response",
+        "parameters": "Parameters",
+        "noParameters": "No parameters",
+        "request": "Request body",
+        "noRequestBody": "No request body",
+        "responseExample": "Response example",
+        "responseFields": "Response fields",
+        "resourceProfile": "Resource profile",
+        "resourceSettings": "Connections",
+        "resourceClose": "Close",
+        "resourceInspectorStatic": "Open this map through the local resource-inspector viewer to inspect live data.",
+        "resourceNoBinding": "No resources are configured for this node in the selected profile.",
+        "resourceMissing": "resource is not configured",
+        "resourceLoading": "Loading…",
+        "resourceRefresh": "Inspect",
+        "resourceView": "View",
+        "resourceFailed": "Unable to retrieve data.",
+        "resourceSettingsTitle": "Connection settings",
+        "resourceSettingsHelp": "Values from .env are defaults. Secrets are write-only and saved only after a successful connection check.",
+        "resourceConfigured": "Configured; enter a replacement value",
+        "resourceNotConfigured": "Not configured",
+        "resourceSave": "Save and check",
+        "resourceSaved": "Settings saved and connection checked.",
+        "resourceRunning": "Running",
+        "resourceStarting": "Starting",
+        "resourceStopped": "Stopped",
+        "resourceDegraded": "Degraded",
+        "resourceUnreachable": "Unreachable",
+        "resourceUnknown": "Unknown"
+      },
+      "tabs": {
+        "booking": {
+          "title": "Booking"
+        }
+      },
+      "diagrams": {
+        "booking-flow": {
+          "title": "Draft to order"
+        }
+      },
+      "nodes": {
+        "booking-flow:browser": {
+          "title": "Browser",
+          "subtitle": "web client"
+        },
+        "booking-flow:api": {
+          "title": "Ticket API",
+          "subtitle": "orders"
+        }
+      },
+      "edges": {
+        "booking-flow:browser-api": {
+          "label": "POST /orders",
+          "tooltip": "The browser sends an order creation request to the API."
+        }
+      },
+      "endpoints": {
+        "create-order": {
+          "description": "Creates an order from a checkout draft."
+        }
+      }
+    }
+  }
+}

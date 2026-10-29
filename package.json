@@ -1,0 +1,34 @@
+{
+  "name": "resource-inspector",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.15.0",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "mcp": "node dist/cli.js mcp",
+    "map": "node dist/cli.js map"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "bullmq": "6.3.11",
+    "ioredis": "5.8.1",
+    "pg": "8.16.3",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.0",
+    "@types/pg": "8.15.6",
+    "prettier": "3.9.10",
+    "typescript": "5.9.3",
+    "vitest": "5.0.5"
+  }
+}
