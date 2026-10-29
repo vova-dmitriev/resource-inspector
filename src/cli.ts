@@ -1,19 +1,24 @@
 #!/usr/bin/env node
+import { homedir } from "node:os"
 import { dirname, join, resolve } from "node:path"
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { loadProfileConfiguration } from "./config/profile-config.js"
 import { createProfileSettingsService, validateProfileConnections } from "./config/settings.js"
 import { createConnectorFactories } from "./connectors/factories.js"
 import { loadConnectorModules } from "./connectors/plugin-loader.js"
+import { createProjectCatalog } from "./projects/catalog.js"
+import { createProjectRuntime } from "./projects/runtime.js"
 import { createInspectorMcpServer } from "./mcp/server.js"
 import { createInspectorService } from "./model/inspector.js"
 import { createMapViewer } from "./viewer/server.js"
+import { createProjectHub } from "./viewer/project-hub.js"
 import type { ProfileConfiguration } from "./model/types.js"
 
 const OperationalText = {
   AGeneratedMapPathIsRequiredWithMap: "A generated map path is required with --map",
   LocalViewerFailedToBind: "Local viewer failed to bind",
-  UsageResourceInspectorMcpMapMapFileConfig: "Usage: resource-inspector (mcp | map --map <file>) [--config <file>] [--env <file>]",
+  UsageResourceInspectorMcpMapHub:
+    "Usage: resource-inspector (mcp | map --map <file> | hub) [--config <file>] [--env <file>] [--projects <file>]",
   InvalidInspectorPort: "Invalid inspector port",
 } as const
 
@@ -30,6 +35,31 @@ await main(command, argumentsList)
 
 async function main(commandName: string | undefined, argumentsList: readonly string[]) {
   const options = readOptions(argumentsList)
+
+  if (commandName === "hub") {
+    const registryPath = resolve(options.projects ?? join(homedir(), ".resource-inspector", "projects.json"))
+    const catalog = createProjectCatalog(registryPath)
+    const hub = createProjectHub({ catalog, createRuntime: createProjectRuntime })
+    const port = readPort(process.env.INSPECTOR_PORT)
+
+    await new Promise<void>((resolveListen, reject) => {
+      hub.once("error", reject)
+      hub.listen(port, "127.0.0.1", resolveListen)
+    })
+
+    const address = hub.address()
+
+    if (!address || typeof address === "string") throw new Error(OperationalText.LocalViewerFailedToBind)
+    process.stdout.write(`Resource Inspector: http://127.0.0.1:${address.port}\n`)
+
+    await new Promise<void>((resolveClose) => {
+      process.once("SIGINT", () => hub.close(() => resolveClose()))
+      process.once("SIGTERM", () => hub.close(() => resolveClose()))
+    })
+
+    return
+  }
+
   const configurationPath = resolve(options.config ?? join(process.cwd(), ".resource-inspector", "profiles.json"))
   const environmentPath = resolve(options.env ?? join(process.cwd(), ".env"))
   const loaded = await loadProfileConfiguration(configurationPath, environmentPath)
@@ -106,7 +136,7 @@ async function main(commandName: string | undefined, argumentsList: readonly str
     return
   }
 
-  throw new Error(OperationalText.UsageResourceInspectorMcpMapMapFileConfig)
+  throw new Error(OperationalText.UsageResourceInspectorMcpMapHub)
 }
 
 function readOptions(values: readonly string[]) {

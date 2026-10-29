@@ -35,14 +35,14 @@ const ViewerPath = {
   SecretSettings: "/__resource-inspector/settings/secrets",
 } as const
 
-type ViewerService = Readonly<{
+export type ViewerService = Readonly<{
   listProfiles(): readonly ProfileDescriptor[]
   listResources(profileId: string): readonly ResourceDescriptor[]
   getResourceStatus(profileId: string, resourceId: string): Promise<ResourceStatus>
   inspectResource(profileId: string, resourceId: string, view: string, input?: Readonly<Record<string, unknown>>): Promise<unknown>
 }>
 
-type ViewerSettingsService = Readonly<{
+export type ViewerSettingsService = Readonly<{
   list(): Promise<unknown>
   updateSecrets(profileId: string, values: Readonly<Record<string, string>>): Promise<unknown>
 }>
