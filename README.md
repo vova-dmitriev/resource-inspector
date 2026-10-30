@@ -2,6 +2,14 @@
 
 Resource Inspector is a portable MCP server and a live-inspection panel for architecture maps generated with `project-architecture-map`. It adds status checks, logs, PostgreSQL previews, BullMQ queue summaries, and structured HTTP request history to the map itself.
 
+## Screenshots
+
+These screenshots use synthetic labels and sample rows; they contain no project names or customer data.
+
+![Sample architecture map](docs/screenshots/architecture-map.png)
+
+![Anonymized interactive database browser](docs/screenshots/database-browser.png)
+
 ## Quick start
 
 ```sh
