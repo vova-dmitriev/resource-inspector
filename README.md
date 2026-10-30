@@ -56,7 +56,7 @@ Built-in connector types are `docker`, `http-health`, `postgres`, `bullmq`, and 
 
 ## Skill
 
-Install `skills/resource-inspector` into your Codex skills directory to use the workflow across projects. This repository also includes a companion snapshot of the updated `project-architecture-map` skill at `integrations/project-architecture-map/skill`; install both skills when the target generator does not yet support the inspector manifest fields and embedded panel. The Resource Inspector skill covers project inventory, profile setup, map bindings, and connector selection. Request-history instrumentation remains optional. See [map integration](integrations/project-architecture-map/README.md) for how the inspector appears in generated maps.
+The canonical `project-architecture-map` generator, template, scripts, and skill live in `integrations/project-architecture-map/skill`. Install that skill together with `skills/resource-inspector`; do not use a stale global generator. The Resource Inspector skill covers source inventory, profiles, map bindings, connectors, and live inspection. Request-history body capture remains optional. Follow the [interactive map quick start](integrations/project-architecture-map/README.md) to install both skills and build a clickable map.
 
 ## Development
 

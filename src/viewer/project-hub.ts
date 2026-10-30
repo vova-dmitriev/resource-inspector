@@ -116,7 +116,7 @@ async function handleRequest(
         return sendHtml(response, injectInspectorBasePath(selectedRuntime.html, `/projects/${encodeURIComponent(projectId)}`))
 
       if (projectPath.startsWith("__resource-inspector/")) {
-        return handleInspectorRequest(request, response, url, projectPath.slice("__resource-inspector/".length), selectedRuntime)
+        return await handleInspectorRequest(request, response, url, projectPath.slice("__resource-inspector/".length), selectedRuntime)
       }
     }
 

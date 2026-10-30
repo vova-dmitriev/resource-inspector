@@ -5,8 +5,8 @@ Use this reference to add a repeatable browser-side auditor to an interactive ar
 Run the bundled check from the project directory, where `@playwright/test` and its Chromium browser are installed:
 
 ```bash
-node ~/.codex/skills/project-architecture-map/scripts/audit-architecture-map.mjs http://127.0.0.1:3000/architecture
-node ~/.codex/skills/project-architecture-map/scripts/audit-architecture-map.mjs ./architecture.html --widths=1440,768,390
+node "$HOME/.agents/skills/project-architecture-map/scripts/audit-architecture-map.mjs" http://127.0.0.1:3000/architecture
+node "$HOME/.agents/skills/project-architecture-map/scripts/audit-architecture-map.mjs" ./architecture.html --widths=1440,768,390
 ```
 
 The command returns structured JSON and exits nonzero when it finds a geometry or browser-console error. Default SVG selectors are `svg.diagram`, `.node`, `path.edge`, `.edge-label`, and `path.bus`; keep these classes on map elements so the script can be reused without rewriting its checks. It uses 1440, 768, and 390 CSS-pixel viewports by default. It audits rendered geometry, not semantic click/hover behavior; exercise those interactions separately.

@@ -3,7 +3,7 @@
 The generator accepts one JSON file and writes one standalone HTML file:
 
 ```bash
-node ~/.codex/skills/project-architecture-map/scripts/create-architecture-map.mjs ./architecture-map.json ./architecture-map.html
+node "$HOME/.agents/skills/project-architecture-map/scripts/create-architecture-map.mjs" ./architecture-map.json ./architecture-map.html
 ```
 
 Core fields are `title`, `tabs`, and `endpoints`; generated maps also require `i18n` and complete `translations.ru/en`. Use `scripts/create-translation-skeleton.mjs` to create every required translation slot. See [the translation contract](translations.md). Each tab contains `id`, `title`, optional `endpointIds`, and `diagrams`. Each diagram declares its `id`, accessible `title`, SVG `viewBox`, nodes, and routed edges. Every edge includes explicit `labelX`/`labelY`; place text away from nodes and other routes. Coordinates and routes are in viewBox units. Use orthogonal SVG path commands (`M`, `H`, `V`) and keep route endpoints on the declared nodes.

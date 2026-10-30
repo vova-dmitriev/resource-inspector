@@ -65,6 +65,9 @@ function validateManifest(value) {
     if (!isNonEmptyString(tab.id) || !isNonEmptyString(tab.title) || !Array.isArray(tab.diagrams)) {
       throw new Error("Each tab requires non-empty id/title and diagrams[]")
     }
+    if (tab.group !== undefined && !["processes", "data-model"].includes(tab.group)) {
+      throw new Error("Each tab group must be processes or data-model")
+    }
     for (const endpointId of tab.endpointIds ?? []) assertEndpoint(endpointId, endpointIds)
 
     for (const diagram of tab.diagrams) {
@@ -134,6 +137,10 @@ function validateTranslations(manifest) {
     }
     requireTranslation(translation.page?.title, locale, "page title")
     for (const key of uiKeys) requireTranslation(translation.ui[key], locale, `UI label ${key}`)
+    if (manifest.tabs.some((tab) => tab.group)) {
+      requireTranslation(translation.ui.processesGroup, locale, "UI label processesGroup")
+      requireTranslation(translation.ui.dataModelGroup, locale, "UI label dataModelGroup")
+    }
     for (const tab of manifest.tabs) requireTranslation(translation.tabs[tab.id]?.title, locale, `tab ${tab.id}`)
     for (const tab of manifest.tabs) {
       for (const diagram of tab.diagrams) {

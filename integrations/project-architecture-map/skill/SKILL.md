@@ -5,6 +5,23 @@ description: "Use when someone needs an accurate, interactive map of a software 
 
 # Project Architecture Map
 
+## Canonical generator and installation
+
+The Resource Inspector repository copy is the source of truth for live-map support: `integrations/project-architecture-map/skill`. Install the whole directory (including `scripts`, `templates`, `references`, and `assets`) into the agent skills directory. For Codex and other compatible hosts, `~/.agents/skills` is a shared location:
+
+```sh
+RESOURCE_INSPECTOR_DIR="/absolute/path/to/resource-inspector"
+mkdir -p "$HOME/.agents/skills/project-architecture-map" "$HOME/.agents/skills/resource-inspector"
+cp -R "$RESOURCE_INSPECTOR_DIR/integrations/project-architecture-map/skill/." "$HOME/.agents/skills/project-architecture-map/"
+cp -R "$RESOURCE_INSPECTOR_DIR/skills/resource-inspector/." "$HOME/.agents/skills/resource-inspector/"
+pnpm --dir "$RESOURCE_INSPECTOR_DIR" install --frozen-lockfile
+pnpm --dir "$RESOURCE_INSPECTOR_DIR" build
+```
+
+Restart the agent host or refresh its skill list. For live service inspection, install both skills. The Resource Inspector repository's `integrations/project-architecture-map/README.md` has the complete generate, configure, and viewer quick start.
+
+When this skill is loaded from another directory, invoke scripts from that installed skill directory. Do not assume `~/.codex/skills/project-architecture-map` is current and do not fall back to a different global generator. In this repository, the canonical generator is `integrations/project-architecture-map/skill/scripts/create-architecture-map.mjs` and its HTML template is `integrations/project-architecture-map/skill/templates/architecture-map.html`.
+
 ## Overview
 
 Build a source-grounded interactive map of real flows, contracts, and entities. Treat geometry as testable behavior; screenshots alone miss broken routing and collisions.
@@ -39,7 +56,7 @@ Build a source-grounded interactive map of real flows, contracts, and entities. 
 3. Exercise tab/hash restore, bidirectional endpoint selection, schema expansion, and edge hover. Report findings with diagram/element IDs; fix unintended collisions and gaps.
 4. In a real browser, inspect every diagram at desktop/tablet/phone sizes. Check console, hierarchy, wrapping, contrast, route clarity, and document/container overflow. Geometry tests supplement, not replace, visual review.
 
-Create a source-grounded manifest using [the map manifest contract](references/map-manifest.md). Generate required `ru`/`en` translation slots with `node ~/.codex/skills/project-architecture-map/scripts/create-translation-skeleton.mjs <map.json> <map-with-translation-slots.json>`, fill every slot using [the translation contract](references/translations.md), then run `node ~/.codex/skills/project-architecture-map/scripts/create-architecture-map.mjs <map.json> <output.html>`. The generator validates all `ru`/`en` labels, descriptions and tooltips, embeds the sun/moon SVG assets, and emits a standalone HTML file. For SVG maps, run the bundled Playwright auditor from a project with `@playwright/test`: `node ~/.codex/skills/project-architecture-map/scripts/audit-architecture-map.mjs <url-or-html-file>`. Read [the geometry-audit reference](references/geometry-audit.md) for the markup contract and findings.
+Create a source-grounded manifest using [the map manifest contract](references/map-manifest.md). Generate required `ru`/`en` translation slots with the bundled `scripts/create-translation-skeleton.mjs`, fill every slot using [the translation contract](references/translations.md), then run the bundled `scripts/create-architecture-map.mjs`. The generator validates all `ru`/`en` labels, descriptions and tooltips, embeds the sun/moon SVG assets, and emits a standalone HTML file. For SVG maps, run the bundled Playwright auditor from a project with `@playwright/test` using `scripts/audit-architecture-map.mjs`. Read [the geometry-audit reference](references/geometry-audit.md) for the markup contract and findings.
 
 ## Common mistakes
 

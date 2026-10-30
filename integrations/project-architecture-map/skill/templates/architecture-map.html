@@ -10,16 +10,31 @@
 :root[data-theme="light"]{color-scheme:light}
 *{box-sizing:border-box}html{min-height:100%;overflow-y:auto}body{min-height:100vh;margin:0;background:var(--surface);color:var(--text)}main{width:100%;padding:clamp(1rem,2.5vw,2.5rem)}
 header{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem}h1{margin:0;font-size:clamp(1.4rem,2.4vw,2rem)}.header-controls{display:flex;align-items:center;gap:.5rem}.language-toggle{min-width:3rem}.theme-toggle{display:grid;flex:none;width:2.5rem;height:2.5rem;place-items:center;padding:0;border-radius:50%}.theme-toggle svg{width:1.3rem;height:1.3rem}
-.tabs{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1.25rem}button{border:1px solid var(--border);border-radius:.65rem;background:transparent;color:inherit;padding:.55rem .8rem;font:inherit;cursor:pointer}button:focus-visible,.resource-hub-link:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.tabs{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1.25rem}.tab-group-heading{flex:0 0 100%;margin:.65rem .15rem 0;padding-top:.45rem;border-top:1px solid var(--border);color:var(--muted);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}button{border:1px solid var(--border);border-radius:.65rem;background:transparent;color:inherit;padding:.55rem .8rem;font:inherit;cursor:pointer}button:focus-visible,.resource-hub-link:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 button[aria-selected=true],button[aria-pressed=true]{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--surface))}[hidden]{display:none!important}
 figure{margin:0;overflow:auto;border:1px solid var(--border);border-radius:.75rem;background:color-mix(in srgb,var(--text) 2%,var(--surface))}.diagram{display:block;width:100%;height:auto;min-width:760px}
 .node rect{stroke:#bcc6d1;stroke-width:1.5;fill:#e8f2ff}.node[data-kind="service"] rect{fill:#fff0e5}.node[data-kind="entity"] rect{fill:#e7f5ec}.node[data-kind="external"] rect{fill:var(--surface);stroke-dasharray:6 5}.node text{fill:#20242a;text-anchor:middle;pointer-events:none}.node .subtitle{fill:#68717c;font-size:13px}.node[role="button"]{cursor:pointer}.node[role="button"]:focus-visible rect{stroke:var(--accent);stroke-width:3}
 .edge{fill:none;stroke:var(--line);stroke-width:1.7;stroke-linecap:square;stroke-linejoin:miter;vector-effect:non-scaling-stroke}.edge-label{fill:var(--muted);font-size:13px;text-anchor:middle;paint-order:stroke;stroke:var(--surface);stroke-width:5px;stroke-linejoin:round}
 .node.is-active rect,.edge.is-active{stroke:var(--accent);stroke-width:3}.node.is-connected rect{stroke:var(--accent);stroke-width:2.5}.edge-hit-area{fill:none;stroke:transparent;stroke-width:14;pointer-events:stroke;cursor:help}.edge-tooltip{position:fixed;z-index:10;max-width:min(28rem,calc(100vw - 2rem));padding:.55rem .75rem;border:1px solid var(--border);border-radius:.55rem;background:var(--surface);color:var(--text);box-shadow:0 5px 20px #0002;pointer-events:none}
 .endpoint-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:.5rem;margin:1.25rem 0}.endpoint-list button{text-align:left;overflow-wrap:anywhere}.endpoint-details{border-top:1px solid var(--border);padding-top:1rem;scroll-margin-top:1rem}.endpoint-details h2{margin:.3rem 0;font-size:1.15rem}.endpoint-details p{color:var(--muted)}
-.resource-controls{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin:0 0 1rem}.resource-controls label{display:flex;align-items:center;gap:.5rem}.resource-profile-select,.resource-settings input{max-width:100%;min-height:2.75rem;border:1px solid var(--border);border-radius:.7rem;background:var(--surface);color:var(--text);padding:.55rem .8rem;font:inherit}.resource-profile-select{min-width:14rem;appearance:none;box-shadow:0 1px 2px #0001;background-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2716%27 height=%2716%27 viewBox=%270 0 16 16%27 fill=%27none%27 stroke=%27%23707881%27 stroke-width=%271.5%27%3E%3Cpath d=%27m4 6 4 4 4-4%27/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .8rem center;padding-right:2.5rem}.resource-controls label{font-weight:600}.resource-hub-link{display:inline-flex;min-height:2.75rem;align-items:center;padding:.55rem .8rem;border:1px solid var(--border);border-radius:.7rem;color:inherit;text-decoration:none}.resource-hub-link:hover{border-color:var(--accent);color:var(--accent)}.resource-panel{width:min(54rem,calc(100vw - 2rem));max-height:min(84vh,60rem);padding:1.25rem;border:1px solid var(--border);border-radius:1rem;background:var(--surface);color:var(--text);box-shadow:0 24px 80px #0005;overflow:auto}.resource-panel::backdrop{background:#0b1018a8;backdrop-filter:blur(3px)}.resource-panel header{position:sticky;top:-1.25rem;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:-1.25rem -1.25rem 1rem;padding:1rem 1.25rem;background:var(--surface);border-bottom:1px solid var(--border)}.resource-view-controls{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:.35rem}.resource-view-controls button{min-height:2.2rem;padding:.35rem .65rem;font-size:.9rem}.resource-view-controls button[aria-pressed="true"]{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--surface))}.resource-panel h2,.resource-panel h3{margin:.25rem 0}.resource-item{display:grid;grid-template-columns:minmax(10rem,1fr) minmax(12rem,2fr);gap:.5rem 1rem;padding:.8rem 0;border-top:1px solid var(--border)}.resource-status{color:var(--muted)}.resource-status[data-state="running"]{color:#188449}.resource-status[data-state="stopped"],.resource-status[data-state="degraded"],.resource-status[data-state="unreachable"]{color:#c74343}.resource-status[data-state="starting"]{color:#a35d00}.resource-result{grid-column:1/-1}.resource-settings{display:grid;gap:.75rem}.resource-setting{display:grid;grid-template-columns:minmax(10rem,1fr) minmax(12rem,2fr);align-items:center;gap:.5rem}.resource-notice{color:var(--muted)}
+.resource-controls{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin:0 0 1rem}.resource-controls label{display:flex;align-items:center;gap:.5rem}.resource-profile-select,.resource-settings input{max-width:100%;min-height:2.75rem;border:1px solid var(--border);border-radius:.7rem;background:var(--surface);color:var(--text);padding:.55rem .8rem;font:inherit}.resource-profile-select{min-width:14rem;appearance:none;box-shadow:0 1px 2px #0001;background-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2716%27 height=%2716%27 viewBox=%270 0 16 16%27 fill=%27none%27 stroke=%27%23707881%27 stroke-width=%271.5%27%3E%3Cpath d=%27m4 6 4 4 4-4%27/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .8rem center;padding-right:2.5rem}.resource-controls label{font-weight:600}.resource-hub-link{display:inline-flex;min-height:2.75rem;align-items:center;padding:.55rem .8rem;border:1px solid var(--border);border-radius:.7rem;color:inherit;text-decoration:none}.resource-hub-link:hover{border-color:var(--accent);color:var(--accent)}.resource-panel{width:min(54rem,calc(100vw - 2rem));max-height:min(84vh,60rem);padding:1.25rem;border:1px solid var(--border);border-radius:1rem;background:var(--surface);color:var(--text);box-shadow:0 24px 80px #0005;overflow:auto}.resource-panel::backdrop{background:#0b1018a8;backdrop-filter:blur(3px)}.resource-inspector-body{position:relative;min-height:8rem;transition:opacity .12s ease}.resource-inspector-body[data-loading="true"]>.resource-item{opacity:.62}.resource-node-loading{position:absolute;top:.2rem;right:.1rem;z-index:4;margin:0;padding:.2rem .5rem;border:1px solid var(--border);border-radius:.4rem;background:var(--surface);color:var(--muted);font-size:.8rem}.resource-panel header{position:sticky;top:-1.25rem;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:-1.25rem -1.25rem 1rem;padding:1rem 1.25rem;background:var(--surface);border-bottom:1px solid var(--border)}.resource-view-controls{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:.35rem}.resource-view-controls button{min-height:2.2rem;padding:.35rem .65rem;font-size:.9rem}.resource-view-controls button[aria-pressed="true"]{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--surface))}.resource-panel h2,.resource-panel h3{margin:.25rem 0}.resource-item{display:grid;grid-template-columns:minmax(10rem,1fr) minmax(12rem,2fr);gap:.5rem 1rem;padding:.8rem 0;border-top:1px solid var(--border)}.resource-status{color:var(--muted)}.resource-status[data-state="running"]{color:#188449}.resource-status[data-state="stopped"],.resource-status[data-state="degraded"],.resource-status[data-state="unreachable"]{color:#c74343}.resource-status[data-state="starting"]{color:#a35d00}.resource-result{grid-column:1/-1}.resource-settings{display:grid;gap:.75rem}.resource-setting{display:grid;grid-template-columns:minmax(10rem,1fr) minmax(12rem,2fr);align-items:center;gap:.5rem}.resource-notice{color:var(--muted)}
 .contract-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1rem}.contract-grid h3,.schema-heading{margin:.5rem 0;font-size:1rem;font-weight:600}
 pre{max-width:100%;margin:0;overflow:auto;padding:1rem;border-radius:.6rem;background:color-mix(in srgb,var(--text) 5%,var(--surface));white-space:pre-wrap;overflow-wrap:anywhere}pre>span{display:block}.json-depth-0{color:var(--muted)}.json-depth-1{color:color-mix(in srgb,var(--text) 88%,#44799b)}.json-depth-2{color:color-mix(in srgb,var(--text) 88%,#63835b)}.json-depth-3{color:color-mix(in srgb,var(--text) 88%,#98774f)}.json-depth-4{color:color-mix(in srgb,var(--text) 88%,#806997)}
+.json-key{color:#87b7ff}.json-string{color:#8acb9b}.json-number{color:#e6b36f}.json-boolean{color:#d99bec}.json-null{color:#9da8b5}.json-punctuation{color:#aeb7c2}
+.resource-output{position:relative;grid-column:1/-1;min-width:0}.resource-output[hidden]{display:none}.resource-item:not([data-resource-kind="database"]) .resource-result{min-height:12rem;max-height:min(58vh,36rem);overflow:auto;overflow-anchor:none;scrollbar-gutter:stable}.resource-loading-indicator{position:absolute;top:2.4rem;right:.6rem;z-index:3;max-width:calc(100% - 1rem);margin:0;padding:.22rem .55rem;border:1px solid var(--border);border-radius:.4rem;background:var(--surface);color:var(--muted);font-size:.8rem;pointer-events:none}.resource-loading-indicator[data-state="error"]{color:#c74343}.resource-presentation-controls{display:flex;justify-content:flex-end;gap:.35rem;margin:.25rem 0 .5rem}.resource-presentation-controls button{min-height:2rem;padding:.25rem .6rem;font-size:.85rem}.resource-presentation-controls button[aria-pressed="true"]{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--surface))}.resource-json{max-height:36rem}.resource-json code{font:inherit}.resource-item{border-radius:.65rem;padding:.9rem .65rem;border-top:1px solid var(--border)}
+.event-timeline{--timeline-label-width:minmax(9rem,17rem);max-height:58vh;overflow:auto;border:1px solid var(--border);border-radius:.65rem;background:color-mix(in srgb,var(--text) 2%,var(--surface))}.timeline-axis,.timeline-row{display:grid;grid-template-columns:var(--timeline-label-width) minmax(22rem,1fr);gap:.8rem;align-items:center;padding:.55rem .75rem}.timeline-row{display:block;grid-template-columns:none}.timeline-axis{position:sticky;top:0;z-index:1;background:var(--surface);border-bottom:1px solid var(--border);color:var(--muted);font-size:.8rem}.timeline-ticks{display:flex;justify-content:space-between;gap:.5rem}.timeline-row{padding-top:.4rem;padding-bottom:.4rem;border-bottom:1px solid color-mix(in srgb,var(--border) 55%,transparent)}.timeline-row:last-of-type{border-bottom:0}.timeline-row summary{display:grid;grid-template-columns:var(--timeline-label-width) minmax(22rem,1fr);gap:.8rem;align-items:center;cursor:pointer;list-style:none}.timeline-row summary::-webkit-details-marker{display:none}.timeline-event-label{display:grid;gap:.1rem;min-width:0;overflow-wrap:anywhere}.timeline-event-title{font-weight:600}.timeline-event-meta{color:var(--muted);font-size:.82rem}.timeline-track{position:relative;height:.7rem;border-radius:999px;background:color-mix(in srgb,var(--text) 6%,var(--surface));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--border) 70%,transparent)}.timeline-bar{position:absolute;top:.08rem;bottom:.08rem;left:var(--timeline-start);width:var(--timeline-width);min-width:.32rem;border-radius:999px;background:var(--accent);box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 30%,transparent)}.timeline-bar[data-level="error"],.timeline-bar[data-status="error"]{background:#d84b51}.timeline-bar[data-level="warn"]{background:#d79a38}.timeline-event-detail{display:block;width:100%;min-width:0;margin:.2rem 0 .5rem;padding:.5rem;background:color-mix(in srgb,var(--text) 3%,var(--surface));border-radius:.45rem}.timeline-event-detail .resource-json{width:100%;min-width:0}.timeline-empty{padding:1rem;color:var(--muted)}
+.node[data-resource-node="true"]{cursor:pointer}.node[data-resource-node="true"] rect{animation:resource-node-pulse 2.8s ease-in-out infinite}.node[data-resource-state="running"] rect{stroke:#188449}.node[data-resource-state="stopped"] rect,.node[data-resource-state="degraded"] rect,.node[data-resource-state="unreachable"] rect{stroke:#d4484e}.node[data-resource-state="starting"] rect{stroke:#c28a28}.resource-status-pulse{fill:none;stroke:#7a8490;stroke-width:1;transform-box:fill-box;transform-origin:center;animation:resource-dot-pulse 2s ease-out infinite;pointer-events:none}.resource-status-dot{stroke:var(--surface);stroke-width:1;fill:#7a8490;pointer-events:none}.node[data-resource-state="running"] .resource-status-pulse,.node[data-resource-state="running"] .resource-status-dot{stroke:#188449;fill:#188449}.node[data-resource-state="stopped"] .resource-status-pulse,.node[data-resource-state="stopped"] .resource-status-dot,.node[data-resource-state="degraded"] .resource-status-pulse,.node[data-resource-state="degraded"] .resource-status-dot,.node[data-resource-state="unreachable"] .resource-status-pulse,.node[data-resource-state="unreachable"] .resource-status-dot{stroke:#d4484e;fill:#d4484e}.node[data-resource-state="starting"] .resource-status-pulse,.node[data-resource-state="starting"] .resource-status-dot{stroke:#c28a28;fill:#c28a28}
+@keyframes resource-node-pulse{0%,100%{stroke-width:1.7;stroke-opacity:.72}50%{stroke-width:3;stroke-opacity:1}}@keyframes resource-dot-pulse{0%{opacity:.7;transform:scale(.8)}80%,100%{opacity:0;transform:scale(2.2)}}@media(prefers-reduced-motion:reduce){.node[data-resource-node="true"] rect,.resource-status-pulse{animation:none}}
+/* Resource inspection is a focused work surface, with live state kept distinct from controls. */
+:root{--resource-running:#147a4b;--resource-failing:#bd333b;--resource-waiting:#9a6815;--json-key:#315d91;--json-string:#286244;--json-number:#835516;--json-boolean:#76508a;--json-muted:#67717d}
+:root[data-theme="dark"]{--resource-running:#35b778;--resource-failing:#f07178;--resource-waiting:#e2b45d;--json-key:#87b7ff;--json-string:#8acb9b;--json-number:#e6b36f;--json-boolean:#d99bec;--json-muted:#aeb7c2}
+.resource-controls{gap:.65rem;margin-bottom:1.2rem}.resource-profile-select{min-width:12rem;border-color:var(--border);background-color:color-mix(in srgb,var(--text) 3%,var(--surface));cursor:pointer;transition:border-color .16s ease,background-color .16s ease}.resource-profile-select:hover{border-color:var(--accent)}
+.resource-panel{width:calc(100vw - 2rem);max-width:none;max-height:94dvh;padding:0;border-color:color-mix(in srgb,var(--border) 85%,var(--accent));border-radius:.8rem;box-shadow:0 28px 90px #0006;scrollbar-gutter:stable}.resource-panel>header{top:0;margin:0;padding:1rem 1.25rem;background:var(--surface);box-shadow:0 1px 0 var(--border)}.resource-panel>header h2{font-size:1.25rem;line-height:1.25;letter-spacing:-.02em}.resource-inspector-body,.resource-settings-body{padding:0 1.25rem 1.25rem}
+.resource-item{position:relative;grid-template-columns:minmax(13rem,1fr) minmax(14rem,1.5fr);gap:.65rem 1rem;margin:.75rem 0;padding:1rem;border:1px solid var(--border);border-radius:.7rem;background:color-mix(in srgb,var(--text) 2.5%,var(--surface));transition:border-color .16s ease,background-color .16s ease}.resource-item:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--border));background:color-mix(in srgb,var(--accent) 4%,var(--surface))}.resource-card-toggle{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;width:100%;padding:0;border:0;background:transparent;color:inherit;text-align:left;cursor:pointer}.resource-card-toggle h3{font-size:1rem;line-height:1.35}.resource-card-toggle:hover h3{color:var(--accent)}.resource-card-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:.2rem}.resource-status{position:relative;margin:.35rem 0 0;padding-left:1rem;font-size:.88rem;color:var(--json-muted)}.resource-status::before{position:absolute;top:.48em;left:0;width:.48rem;height:.48rem;border-radius:50%;background:currentColor;content:""}.resource-status[data-state="running"]{color:var(--resource-running)}.resource-status[data-state="stopped"],.resource-status[data-state="degraded"],.resource-status[data-state="unreachable"]{color:var(--resource-failing)}.resource-status[data-state="starting"]{color:var(--resource-waiting)}
+.resource-view-controls,.resource-presentation-controls{align-items:center;gap:.3rem;padding:.2rem;border:1px solid var(--border);border-radius:.55rem;background:color-mix(in srgb,var(--text) 3%,var(--surface))}.resource-view-controls{align-self:start;justify-content:flex-end}.resource-presentation-controls{width:max-content;margin:.25rem 0 .55rem auto}.resource-view-controls button,.resource-presentation-controls button,.resource-table-select{min-height:2rem;padding:.3rem .65rem;border-color:transparent;border-radius:.38rem;font-size:.84rem}.resource-table-select{max-width:min(16rem,100%);background:var(--surface);color:var(--text);font:inherit}.database-browser{display:grid;grid-template-columns:minmax(12rem,15rem) minmax(0,1fr);min-height:34rem;max-height:62vh;border:1px solid var(--border);border-radius:.7rem;overflow:hidden;background:var(--surface)}.database-sidebar{display:flex;min-height:0;flex-direction:column;gap:.65rem;padding:.75rem;border-right:1px solid var(--border);background:color-mix(in srgb,var(--text) 2%,var(--surface))}.database-sidebar-heading,.database-main-heading{display:flex;align-items:center;justify-content:space-between;gap:.6rem}.database-sidebar-heading{font-size:.84rem;font-weight:650}.database-table-count{min-width:1.55rem;padding:.08rem .35rem;border-radius:999px;background:color-mix(in srgb,var(--text) 7%,var(--surface));color:var(--muted);font-size:.75rem;text-align:center}.database-pagination-button{min-height:1.8rem;padding:.1rem .45rem;border:1px solid var(--border);border-radius:.35rem;background:var(--surface);color:var(--muted);font:inherit;cursor:pointer}.database-pagination-button:hover{border-color:var(--accent);color:var(--accent)}.database-search{width:100%;min-height:2.35rem;padding:.45rem .6rem;border:1px solid var(--border);border-radius:.45rem;background:var(--surface);color:var(--text);font:inherit}.database-table-list{display:grid;align-content:start;gap:.15rem;min-height:0;overflow:auto}.database-table-button{width:100%;padding:.42rem .5rem;border:1px solid transparent;border-radius:.4rem;background:transparent;color:var(--text);font:inherit;font-size:.86rem;text-align:left;overflow-wrap:anywhere;cursor:pointer}.database-table-button:hover{background:color-mix(in srgb,var(--accent) 8%,var(--surface))}.database-table-button[aria-current="true"]{border-color:color-mix(in srgb,var(--accent) 35%,var(--border));background:color-mix(in srgb,var(--accent) 12%,var(--surface));color:var(--accent)}.database-main{display:flex;min-width:0;min-height:0;flex-direction:column;overflow:hidden}.database-main-heading{padding:.75rem .9rem;border-bottom:1px solid var(--border)}.database-main-heading h4{min-width:0;margin:0;font-size:.98rem;overflow-wrap:anywhere}.database-view-tabs{display:flex;align-items:center;gap:.25rem;padding:.45rem .7rem;border-bottom:1px solid var(--border)}.database-row-search{flex:0 1 17rem;min-width:min(12rem,100%);min-height:2.2rem;margin-left:auto;padding:.38rem .6rem;border:1px solid var(--border);border-radius:.4rem;background:var(--surface);color:var(--text);font:inherit;font-size:.84rem}.database-row-search[hidden]{display:none}.database-match{border-radius:.15rem;background:color-mix(in srgb,var(--resource-waiting) 34%,var(--surface));color:var(--text);box-decoration-break:clone}.database-switch-status{margin-left:auto;color:var(--muted);font-size:.78rem}.database-switch-status[data-state="error"]{color:#c74343}.database-view-tab{padding:.38rem .65rem;border:1px solid transparent;border-radius:.4rem;background:transparent;color:var(--muted);font:inherit;font-size:.84rem;cursor:pointer}.database-view-tab:hover{color:var(--text);background:color-mix(in srgb,var(--text) 4%,var(--surface))}.database-view-tab[aria-pressed="true"]{border-color:color-mix(in srgb,var(--accent) 35%,var(--border));background:color-mix(in srgb,var(--accent) 10%,var(--surface));color:var(--text)}.database-content{min-width:0;min-height:0;flex:1;overflow:auto}.database-grid-wrap{max-height:48vh;overflow:auto;overflow-anchor:none;scroll-behavior:auto}.database-grid{width:100%;min-width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;font-size:.84rem;white-space:nowrap}.database-grid tbody tr:not(.database-virtual-spacer){height:40px}.database-grid tr.database-virtual-spacer td{padding:0!important;border:0!important}.database-grid th,.database-grid td{max-width:28rem;padding:.48rem .65rem;border-bottom:1px solid color-mix(in srgb,var(--border) 75%,transparent);text-align:left;vertical-align:top}.database-grid th{position:sticky;top:0;z-index:1;background:color-mix(in srgb,var(--text) 4%,var(--surface));font-weight:650}.database-sort-button{padding:0;border:0;background:transparent;color:inherit;font:inherit;font-weight:inherit;text-align:left;cursor:pointer}.database-grid td{max-width:28rem;overflow:hidden;text-overflow:ellipsis}.database-grid td[data-null="true"]{color:var(--muted);font-style:italic}.database-load-status{margin:0;padding:.55rem .75rem;border-top:1px solid var(--border);font-size:.82rem;color:var(--muted);text-align:center}.database-load-retry{display:block;margin:.5rem auto;padding:.35rem .65rem;border:1px solid var(--border);border-radius:.4rem;background:var(--surface);color:var(--text);font:inherit;cursor:pointer}.database-load-retry:hover{border-color:var(--accent)}.database-empty{padding:1.1rem;color:var(--muted)}.database-view-tabs button:focus-visible,.database-table-button:focus-visible,.database-search:focus-visible,.database-row-search:focus-visible,.database-load-retry:focus-visible{outline:2px solid var(--accent);outline-offset:2px}.resource-view-controls button[aria-pressed="true"],.resource-presentation-controls button[aria-pressed="true"]{border-color:color-mix(in srgb,var(--accent) 70%,var(--border));background:color-mix(in srgb,var(--accent) 13%,var(--surface));color:var(--text)}.resource-output{padding-top:.25rem}.resource-result{min-width:0}.resource-json{max-height:35rem;border:1px solid color-mix(in srgb,var(--border) 80%,transparent)}.json-key{color:var(--json-key)}.json-string{color:var(--json-string)}.json-number{color:var(--json-number)}.json-boolean{color:var(--json-boolean)}.json-null,.json-punctuation{color:var(--json-muted)}
+.event-timeline{border-color:var(--border);background:color-mix(in srgb,var(--text) 2%,var(--surface))}.timeline-axis{min-width:calc(13rem + 22rem + 2rem);padding:.65rem .8rem;color:var(--json-muted)}.timeline-row{min-width:calc(13rem + 22rem + 2rem);min-height:3.65rem;padding:.5rem .8rem;transition:background-color .14s ease}.timeline-row:hover{background:color-mix(in srgb,var(--accent) 5%,var(--surface))}.timeline-event-title{font-size:.88rem;line-height:1.35}.timeline-event-meta{font-variant-numeric:tabular-nums}.timeline-track{height:.6rem;background:color-mix(in srgb,var(--text) 9%,var(--surface));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--border) 75%,transparent)}.timeline-bar{top:.08rem;bottom:.08rem;box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 35%,transparent)}.timeline-event-detail{padding:.6rem;border:1px solid var(--border);border-radius:.5rem;background:var(--surface)}
+.node[data-resource-state="running"] rect{stroke:var(--resource-running)}.node[data-resource-state="stopped"] rect,.node[data-resource-state="degraded"] rect,.node[data-resource-state="unreachable"] rect{stroke:var(--resource-failing)}.node[data-resource-state="starting"] rect{stroke:var(--resource-waiting)}.node[data-resource-state="running"] .resource-status-pulse,.node[data-resource-state="running"] .resource-status-dot{stroke:var(--resource-running);fill:var(--resource-running)}.node[data-resource-state="stopped"] .resource-status-pulse,.node[data-resource-state="stopped"] .resource-status-dot,.node[data-resource-state="degraded"] .resource-status-pulse,.node[data-resource-state="degraded"] .resource-status-dot,.node[data-resource-state="unreachable"] .resource-status-pulse,.node[data-resource-state="unreachable"] .resource-status-dot{stroke:var(--resource-failing);fill:var(--resource-failing)}.node[data-resource-state="starting"] .resource-status-pulse,.node[data-resource-state="starting"] .resource-status-dot{stroke:var(--resource-waiting);fill:var(--resource-waiting)}
+@media(max-width:700px){.database-view-tabs{flex-wrap:wrap}.database-row-search{flex-basis:100%;width:100%;margin-left:0}.database-browser{grid-template-columns:minmax(0,1fr);max-height:75vh}.database-sidebar{max-height:12rem;border-right:0;border-bottom:1px solid var(--border)}.database-table-list{display:flex;gap:.3rem;overflow:auto}.database-table-button{width:max-content;max-width:15rem;flex:0 0 auto}.database-grid-wrap{max-height:38vh}.resource-panel{width:calc(100vw - 1rem);max-height:92dvh}.resource-panel>header{padding:.85rem 1rem}.resource-inspector-body,.resource-settings-body{padding:0 1rem 1rem}.resource-item{grid-template-columns:1fr;padding:.8rem}.resource-view-controls{justify-content:flex-start}.timeline-axis{grid-template-columns:minmax(8rem,12rem) minmax(18rem,1fr)}.timeline-row summary{grid-template-columns:minmax(8rem,12rem) minmax(18rem,1fr)}}
 details{margin:.4rem 0 .4rem 1rem}.schema-root{margin-left:0}.schema-row{padding:.2rem .35rem;border-radius:.3rem}.schema-depth-0>.schema-summary{background:color-mix(in srgb,#75849a 9%,var(--surface))}.schema-depth-1>.schema-summary{background:color-mix(in srgb,#5482a1 8%,var(--surface))}.schema-depth-2>.schema-summary{background:color-mix(in srgb,#66865d 8%,var(--surface))}.schema-depth-3>.schema-summary{background:color-mix(in srgb,#9c805a 8%,var(--surface))}.schema-depth-4>.schema-summary{background:color-mix(in srgb,#8a6f9f 8%,var(--surface))}.schema-summary{display:inline-flex;align-items:baseline;gap:.45rem;padding:.15rem .35rem;border-radius:.3rem;cursor:pointer}.schema-name,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.schema-name{color:color-mix(in srgb,var(--text) 82%,#3c7090)}.schema-type{color:var(--muted);font-size:.9em}.schema-required{font-size:.75em;color:var(--muted)}.enum-values{display:flex;flex-wrap:wrap;gap:.3rem;margin:.3rem 0 .3rem 1rem}.enum-value{padding:.1rem .35rem;border-radius:.3rem;background:color-mix(in srgb,#74805f 10%,var(--surface));font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
 @media(max-width:700px){main{padding:1rem}header{align-items:flex-start}.diagram{min-width:760px}.endpoint-list{grid-template-columns:1fr}.resource-item,.resource-setting{grid-template-columns:1fr}.resource-result{grid-column:auto}}
 </style>
@@ -123,17 +138,36 @@ function svgElement(name, attributes = {}, text) {
 }
 
 function jsonBlock(value) {
-  const block = element("pre")
+  const block = element("pre", { class: "resource-json" })
+  const code = element("code")
   const lines = JSON.stringify(value === undefined ? null : value, null, 2).split("\n")
+  const tokenPattern = /"(?:\\.|[^"\\])*"(?=\s*:)|"(?:\\.|[^"\\])*"|-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?|\b(?:true|false|null)\b|[{}\[\],:]/g
 
   for (const line of lines) {
     const indentation = line.length - line.trimStart().length
     const depth = Math.min(Math.floor(indentation / 2), 4)
-    const jsonLine = element("span", { class: `json-depth-${depth}` }, line.trimStart())
+    const content = line.trimStart()
+    const jsonLine = element("span", { class: `json-depth-${depth}` })
     jsonLine.style.paddingLeft = `${indentation}ch`
-    block.append(jsonLine)
+    let offset = 0
+
+    for (const match of content.matchAll(tokenPattern)) {
+      const token = match[0]
+      const index = match.index ?? offset
+      if (index > offset) jsonLine.append(document.createTextNode(content.slice(offset, index)))
+      const kind = token.startsWith('"') ? (content.slice(index + token.length).trimStart().startsWith(":") ? "key" : "string")
+        : token === "true" || token === "false" ? "boolean"
+        : token === "null" ? "null"
+        : /^[{}\[\],:]$/.test(token) ? "punctuation" : "number"
+      jsonLine.append(element("span", { class: `json-${kind}` }, token))
+      offset = index + token.length
+    }
+
+    if (offset < content.length) jsonLine.append(document.createTextNode(content.slice(offset)))
+    code.append(jsonLine)
   }
 
+  block.append(code)
   return block
 }
 
@@ -141,6 +175,7 @@ let inspectorAvailable = false
 let inspectorProfiles = []
 let inspectorResources = []
 let selectedResourceNode
+let resourceNodeRenderSequence = 0
 const resourceProfileStorageKey = "architecture-map-resource-profile"
 
 async function initializeResourceInspector() {
@@ -159,6 +194,7 @@ async function initializeResourceInspector() {
   resourceSettingsButton.addEventListener("click", () => { void openResourceSettings() })
   resourceProfileSelect.addEventListener("change", () => {
     try { localStorage.setItem(resourceProfileStorageKey, resourceProfileSelect.value) } catch {}
+    void refreshMapResourceStatuses()
     if (selectedResourceNode) void renderResourceNode(selectedResourceNode)
   })
 
@@ -181,48 +217,71 @@ async function initializeResourceInspector() {
   if (selected) resourceProfileSelect.value = selected
   if (inspectorAvailable) {
     await loadInspectorResources()
+    await refreshMapResourceStatuses()
+    window.setInterval(() => { void refreshMapResourceStatuses() }, 15_000)
     window.setInterval(() => { if (resourcePanel.open && selectedResourceNode && resourceSettingsBody.hidden) void refreshResourceStatuses() }, 15_000)
   }
 }
 
-async function loadInspectorResources() {
+async function loadInspectorResources(profileId = resourceProfileSelect.value) {
   try {
-    const response = await fetch(inspectorUrl(`/__resource-inspector/resources?profileId=${encodeURIComponent(resourceProfileSelect.value)}`), { credentials: "same-origin", redirect: "error" })
+    const response = await fetch(inspectorUrl(`/__resource-inspector/resources?profileId=${encodeURIComponent(profileId)}`), { credentials: "same-origin", redirect: "error" })
     if (!response.ok) throw new Error()
-    inspectorResources = (await response.json()).resources
+    const resources = (await response.json()).resources
+    if (profileId === resourceProfileSelect.value) inspectorResources = resources
+    return resources
   } catch {
-    inspectorResources = []
+    if (profileId === resourceProfileSelect.value) inspectorResources = []
+    return []
   }
 }
 
 async function renderResourceNode(node) {
+  const sequence = ++resourceNodeRenderSequence
+  const profileId = resourceProfileSelect.value
   selectedResourceNode = node
   if (!resourcePanel.open) resourcePanel.showModal()
   resourceSettingsBody.hidden = true
   resourceInspectorBody.hidden = false
   resourcePanelTitle.textContent = localized("nodes", `${node.diagramId}:${node.id}`, "title", node.title)
-  resourceInspectorBody.replaceChildren()
-  const ids = node.resourceRefsByProfile?.[resourceProfileSelect.value] ?? []
+  const ids = node.resourceRefsByProfile?.[profileId] ?? []
 
   if (!inspectorAvailable) {
+    resourceInspectorBody.removeAttribute("data-loading")
+    resourceInspectorBody.removeAttribute("aria-busy")
+    resourceInspectorBody.replaceChildren()
     resourceInspectorBody.append(element("p", { class: "resource-notice" }, resourceText("resourceInspectorStatic", "Live inspection needs the local resource-inspector viewer. Open this map using the documented command.")))
     return
   }
   if (!ids.length) {
+    resourceInspectorBody.removeAttribute("data-loading")
+    resourceInspectorBody.removeAttribute("aria-busy")
+    resourceInspectorBody.replaceChildren()
     resourceInspectorBody.append(element("p", { class: "resource-notice" }, resourceText("resourceNoBinding", "This node has no resource binding in the selected profile.")))
     return
   }
 
-  await loadInspectorResources()
+  resourceInspectorBody.dataset.loading = "true"
+  resourceInspectorBody.setAttribute("aria-busy", "true")
+  resourceInspectorBody.querySelector(".resource-node-loading")?.remove()
+  const loadingStatus = element("p", { class: "resource-node-loading", role: "status" }, locale === "ru" ? "Обновляю профиль…" : "Updating profile…")
+  resourceInspectorBody.append(loadingStatus)
+
+  const resources = await loadInspectorResources(profileId)
+  if (sequence !== resourceNodeRenderSequence || profileId !== resourceProfileSelect.value) return
+  const items = []
   for (const id of ids) {
-    const resource = inspectorResources.find((item) => item.id === id)
+    const resource = resources.find((item) => item.id === id)
     if (!resource) {
-      resourceInspectorBody.append(element("p", { class: "resource-notice" }, `${id}: ${resourceText("resourceMissing", "resource is not configured")}`))
+      items.push(element("p", { class: "resource-notice" }, `${id}: ${resourceText("resourceMissing", "resource is not configured")}`))
       continue
     }
-    resourceInspectorBody.append(createResourceItem(resource))
+    items.push(createResourceItem(resource))
   }
-  await refreshResourceStatuses()
+  resourceInspectorBody.replaceChildren(...items)
+  resourceInspectorBody.removeAttribute("data-loading")
+  resourceInspectorBody.removeAttribute("aria-busy")
+  await refreshResourceStatuses(profileId)
 }
 
 function createResourceItem(resource) {
@@ -230,61 +289,764 @@ function createResourceItem(resource) {
   const title = element("h3", {}, resource.name)
   const status = element("p", { class: "resource-status", "data-state": "unknown" }, resourceText("resourceLoading", "Checking status…"))
   const controls = element("div", { class: "resource-view-controls" })
+  const isDatabase = resource.kind === "database"
+  const presentation = element("div", { class: "resource-presentation-controls", hidden: "" })
+  const timelineButton = element("button", { type: "button", "aria-pressed": "true" }, resourceText("resourceTimeline", locale === "ru" ? "Таймлайн" : "Timeline"))
+  const jsonButton = element("button", { type: "button", "aria-pressed": "false" }, "JSON")
+  const output = element("div", { class: "resource-output", hidden: "" })
+  const result = element("div", { class: "resource-result" })
+  const loadingIndicator = element("p", {
+    class: "resource-loading-indicator",
+    role: "status",
+    hidden: "",
+  }, resourceText("resourceLoading", locale === "ru" ? "Загрузка…" : "Loading…"))
   const metadata = element("div")
-  metadata.append(title, status)
-  const views = (resource.views ?? []).filter((view) => view !== "status")
-  const result = element("pre", { class: "resource-result", hidden: "" })
-  for (const [index, view] of views.entries()) {
-    const inspect = element("button", { type: "button", "aria-pressed": String(index === 0) }, view)
-    inspect.addEventListener("click", () => {
-      controls.querySelectorAll("button").forEach((button) => button.setAttribute("aria-pressed", String(button === inspect)))
-      void inspectResource(resource.id, view, result)
-    })
-    controls.append(inspect)
+  const state = {
+    sequence: 0,
+    value: undefined,
+    view: isDatabase ? "tables" : "",
+    displayTable: "",
+    mode: "timeline",
+    tables: [],
+    selectedTable: "",
+    columnWidthsByTable: {},
+    tableSearch: "",
+    search: "",
+    offset: 0,
+    gridScrollPositions: { rows: 0, schema: 0 },
+    databaseCache: {},
+    sortBy: "",
+    sortDirection: "asc",
+    loading: false,
+    loadingMore: false,
+    loadMoreError: "",
+    error: "",
+    database: isDatabase,
+    loadingIndicator,
   }
-  controls.hidden = views.length === 0
-  item.append(metadata, controls, result)
-  if (views.length) void inspectResource(resource.id, views[0], result)
+  metadata.append(title, status)
+  if (isDatabase) item.dataset.resourceKind = "database"
+  output.append(presentation, result, loadingIndicator)
+  const views = (resource.views ?? []).filter((view) => view !== "status")
+  const databaseBrowser = isDatabase
+    ? createDatabaseBrowser(state, {
+      selectTable: (table) => {
+        window.clearTimeout(databaseSearchTimer)
+        state.selectedTable = table
+        state.search = ""
+        state.offset = 0
+        state.gridScrollPositions = { rows: 0, schema: 0 }
+        state.sortBy = ""
+        state.loadingMore = false
+        state.loadMoreError = ""
+        loadDatabaseView(state.view === "schema" ? "schema" : "rows")
+      },
+      selectView: (view) => {
+        window.clearTimeout(databaseSearchTimer)
+        state.offset = 0
+        state.loadingMore = false
+        state.loadMoreError = ""
+        loadDatabaseView(view)
+      },
+      searchRows: (value) => {
+        state.search = value.trim()
+        state.offset = 0
+        state.gridScrollPositions.rows = 0
+        state.loadingMore = false
+        state.loadMoreError = ""
+        window.clearTimeout(databaseSearchTimer)
+        databaseSearchTimer = window.setTimeout(() => loadDatabaseView("rows", 0), 250)
+      },
+      loadMore: () => {
+        if (state.loadingMore || !state.value?.hasMore || state.view !== "rows") return
+        state.loadMoreError = ""
+        loadDatabaseView("rows", state.offset, true)
+      },
+      sortColumn: (column) => {
+        window.clearTimeout(databaseSearchTimer)
+        state.sortDirection = state.sortBy === column && state.sortDirection === "asc" ? "desc" : "asc"
+        state.sortBy = column
+        state.offset = 0
+        state.gridScrollPositions.rows = 0
+        state.loadingMore = false
+        state.loadMoreError = ""
+        loadDatabaseView("rows", 0)
+      },
+      refresh: () => {
+        window.clearTimeout(databaseSearchTimer)
+        state.value = undefined
+        state.tables = []
+        state.columnWidthsByTable = {}
+        state.view = "tables"
+        state.offset = 0
+        state.loadingMore = false
+        state.loadMoreError = ""
+        void inspectResource(resource.id, "tables", output, result, state, renderOutput)
+      },
+    })
+    : undefined
+  let databaseSearchTimer
+
+  function loadDatabaseView(view, offset = 0, append = false) {
+    state.view = view
+    if (!append) {
+      state.offset = offset
+      const cached = state.databaseCache[databaseCacheKey(state.selectedTable, view, state.sortBy, state.sortDirection)]
+      if (cached) {
+        state.value = cached
+        state.loading = false
+        state.error = ""
+        state.displayTable = state.selectedTable
+        state.offset = view === "rows" ? cached.offset + cached.rows.length : 0
+        state.loadingIndicator.hidden = true
+        output.removeAttribute("aria-busy")
+        databaseBrowser.render()
+        return
+      }
+    }
+    const input = view === "rows"
+      ? {
+        table: state.selectedTable,
+        limit: 50,
+        offset,
+        ...(state.search ? { search: state.search } : {}),
+        ...(state.sortBy ? { sortBy: state.sortBy, sortDirection: state.sortDirection } : {}),
+      }
+      : { table: state.selectedTable }
+    state.loadingMore = append
+    state.loadMoreError = ""
+    void inspectResource(resource.id, view, output, result, state, renderOutput, input, append, append ? databaseBrowser : undefined)
+  }
+
+  function databaseCacheKey(table, view, sortBy, sortDirection) {
+    return JSON.stringify([table, view, view === "rows" ? state.search : "", view === "rows" ? sortBy : "", view === "rows" ? sortDirection : ""])
+  }
+
+  function renderOutput() {
+    if (databaseBrowser) {
+      if (state.view === "tables" && Array.isArray(state.value)) {
+        state.tables = state.value.filter((table) => typeof table === "string")
+        if (!state.tables.includes(state.selectedTable)) state.selectedTable = ""
+        if (state.selectedTable) {
+          state.view = "rows"
+          void loadDatabaseView("rows")
+          return
+        }
+      }
+      if (state.error && state.value !== undefined) {
+        databaseBrowser.showViewError()
+        return
+      }
+      databaseBrowser.render()
+      if (databaseBrowser.element.parentElement !== result) result.replaceChildren(databaseBrowser.element)
+      return
+    }
+
+    const scrollTop = result.scrollTop
+    result.replaceChildren()
+    const hasTimeline = state.view === "logs" || state.view === "requests"
+    presentation.hidden = !hasTimeline
+    if (hasTimeline && state.mode === "timeline") result.append(renderEventTimeline(state.value))
+    else result.append(jsonBlock(state.value))
+    requestAnimationFrame(() => { result.scrollTop = scrollTop })
+  }
+
+  timelineButton.addEventListener("click", () => {
+    state.mode = "timeline"
+    timelineButton.setAttribute("aria-pressed", "true")
+    jsonButton.setAttribute("aria-pressed", "false")
+    renderOutput()
+  })
+  jsonButton.addEventListener("click", () => {
+    state.mode = "json"
+    timelineButton.setAttribute("aria-pressed", "false")
+    jsonButton.setAttribute("aria-pressed", "true")
+    renderOutput()
+  })
+  presentation.append(timelineButton, jsonButton)
+
+  if (!isDatabase) {
+    for (const [index, view] of views.entries()) {
+      const inspect = element("button", { type: "button", "aria-pressed": String(index === 0) }, view)
+      inspect.addEventListener("click", () => {
+        controls.querySelectorAll("button").forEach((button) => button.setAttribute("aria-pressed", String(button === inspect)))
+        state.view = view
+        state.mode = "timeline"
+        timelineButton.setAttribute("aria-pressed", "true")
+        jsonButton.setAttribute("aria-pressed", "false")
+        void inspectResource(resource.id, view, output, result, state, renderOutput)
+      })
+      controls.append(inspect)
+    }
+  }
+  controls.hidden = isDatabase || views.length === 0
+  item.append(metadata, controls, output)
+  if (views.length) {
+    state.view = views[0]
+    void inspectResource(resource.id, views[0], output, result, state, renderOutput)
+  }
   return item
 }
 
-async function refreshResourceStatuses() {
+function createDatabaseBrowser(state, actions) {
+  const browser = element("section", { class: "database-browser", "aria-label": locale === "ru" ? "Обозреватель базы данных" : "Database browser" })
+  const sidebar = element("aside", { class: "database-sidebar" })
+  const sidebarHeading = element("div", { class: "database-sidebar-heading" })
+  const tableCount = element("span", { class: "database-table-count" })
+  const refreshButton = element("button", { type: "button", class: "database-pagination-button", "aria-label": locale === "ru" ? "Обновить список таблиц" : "Refresh table list" }, "↻")
+  const search = element("input", {
+    class: "database-search",
+    type: "search",
+    "aria-label": locale === "ru" ? "Поиск таблицы" : "Search tables",
+    placeholder: locale === "ru" ? "Найти таблицу…" : "Search tables…",
+  })
+  const tableList = element("nav", { class: "database-table-list", "aria-label": locale === "ru" ? "Таблицы базы данных" : "Database tables" })
+  const main = element("div", { class: "database-main" })
+  const mainContent = element("div", { class: "database-content" })
+  const viewButtons = new Map()
+  const viewLoading = element("span", { class: "database-switch-status", role: "status", hidden: "" })
+  const rowSearch = element("input", {
+    class: "database-row-search",
+    type: "search",
+    "aria-label": locale === "ru" ? "Поиск по всем полям таблицы" : "Search all table fields",
+    placeholder: locale === "ru" ? "Поиск по всем полям…" : "Search all fields…",
+  })
+  const virtualization = { rowHeight: 40, overscanRows: 8, fetchThreshold: 240 }
+  let viewTabs
+  let rowsBody
+  let rowsGrid
+  let rowCountLabel
+  let loadStatus
+  let virtualRenderFrame = 0
+
+  sidebarHeading.append(element("span", {}, locale === "ru" ? "Таблицы" : "Tables"), tableCount, refreshButton)
+  sidebar.append(sidebarHeading, search, tableList)
+  main.append(mainContent)
+  browser.append(sidebar, main)
+
+  function renderTableList() {
+    const query = state.tableSearch.trim().toLowerCase()
+    const tables = state.tables.filter((table) => table.toLowerCase().includes(query))
+    tableCount.textContent = String(state.tables.length)
+    const renderKey = JSON.stringify([query, tables])
+    if (tableList.dataset.renderKey === renderKey) {
+      for (const button of tableList.querySelectorAll(".database-table-button")) {
+        button.setAttribute("aria-current", String(button.textContent === state.selectedTable))
+      }
+      return
+    }
+    const previousQuery = tableList.dataset.query
+    const scrollTop = tableList.scrollTop
+    tableList.replaceChildren()
+    tableList.dataset.renderKey = renderKey
+    tableList.dataset.query = query
+    if (!tables.length) {
+      tableList.append(element("p", { class: "database-empty" }, state.tables.length
+        ? locale === "ru" ? "Таблицы не найдены." : "No tables match."
+        : locale === "ru" ? "Таблиц нет." : "No tables."))
+      return
+    }
+    for (const table of tables) {
+      const button = element("button", {
+        type: "button",
+        class: "database-table-button",
+        "aria-current": String(table === state.selectedTable),
+      }, table)
+      button.addEventListener("click", () => actions.selectTable(table))
+      tableList.append(button)
+    }
+    if (previousQuery === query) tableList.scrollTop = scrollTop
+  }
+
+  function setLoadingView(view) {
+    for (const button of tableList.querySelectorAll(".database-table-button")) {
+      button.setAttribute("aria-current", String(button.textContent === state.selectedTable))
+    }
+    for (const [name, button] of viewButtons) button.setAttribute("aria-pressed", String(name === view))
+    rowSearch.value = state.search
+    rowSearch.hidden = view !== "rows"
+    viewLoading.hidden = false
+    viewLoading.dataset.state = "loading"
+    viewLoading.textContent = locale === "ru" ? "Загрузка…" : "Loading…"
+    if (viewTabs && viewLoading.parentElement !== viewTabs) viewTabs.append(viewLoading)
+  }
+
+  function showViewError() {
+    viewLoading.hidden = false
+    viewLoading.dataset.state = "error"
+    viewLoading.textContent = state.error
+    if (viewTabs && viewLoading.parentElement !== viewTabs) viewTabs.append(viewLoading)
+  }
+
+  function renderSchema() {
+    const columns = state.value?.columns ?? []
+    const table = element("table", { class: "database-grid" })
+    const head = element("thead")
+    const header = element("tr")
+    header.append(element("th", {}, locale === "ru" ? "Колонка" : "Column"), element("th", {}, locale === "ru" ? "Тип данных" : "Data type"))
+    head.append(header)
+    const body = element("tbody")
+    for (const column of columns) {
+      const row = element("tr")
+      row.append(element("td", {}, column.column_name), element("td", {}, column.data_type))
+      body.append(row)
+    }
+    table.append(head, body)
+    const grid = element("div", { class: "database-grid-wrap" }, table)
+    grid.addEventListener("scroll", () => {
+      state.gridScrollPositions.schema = grid.scrollTop
+    }, { passive: true })
+    mainContent.append(grid)
+    requestAnimationFrame(() => { grid.scrollTop = state.gridScrollPositions.schema })
+  }
+
+  function formatDatabaseCell(value) {
+    return value === null || value === undefined ? "NULL" : typeof value === "object" ? JSON.stringify(value) : String(value)
+  }
+
+  function createColumnGroup(columns, rows) {
+    const signature = JSON.stringify(columns.map(({ column_name, data_type }) => [column_name, data_type]))
+    const cachedWidths = state.columnWidthsByTable[state.selectedTable]
+    const widths = cachedWidths?.signature === signature
+      ? cachedWidths.widths
+      : columns.map((column) => {
+        const longestValueLength = rows.reduce((longest, row) => {
+          return Math.max(longest, formatDatabaseCell(row[column.column_name]).length)
+        }, column.column_name.length + 2)
+
+        return Math.min(448, Math.max(96, longestValueLength * 8 + 28))
+      })
+
+    state.columnWidthsByTable[state.selectedTable] = { signature, widths }
+    const columnGroup = element("colgroup")
+    let totalWidth = 0
+
+    for (const width of widths) {
+      const columnElement = element("col")
+      columnElement.style.width = `${width}px`
+      totalWidth += width
+      columnGroup.append(columnElement)
+    }
+
+    return { columnGroup, totalWidth }
+  }
+
+  function createRow(record, columns) {
+    const row = element("tr")
+    for (const column of columns) {
+      const cellValue = record[column.column_name]
+      const isNull = cellValue === null || cellValue === undefined
+      const text = formatDatabaseCell(cellValue)
+      const cell = element("td", { title: text, "data-null": String(isNull) })
+      appendSearchHighlight(cell, text, state.search)
+      row.append(cell)
+    }
+    return row
+  }
+
+  function createSpacerRow(height, columnCount) {
+    const row = element("tr", { class: "database-virtual-spacer", "aria-hidden": "true" })
+    const cell = element("td", { colspan: String(columnCount) })
+    cell.style.height = `${height}px`
+    cell.style.padding = "0"
+    cell.style.border = "0"
+    row.append(cell)
+    return row
+  }
+
+  function renderVirtualRows() {
+    if (!rowsBody || !rowsGrid) return
+    const rows = state.value?.rows ?? []
+    const columns = state.value?.columns ?? []
+    const bodyTop = Math.max(0, rowsGrid.scrollTop - rowsGrid.querySelector("thead")?.offsetHeight)
+    const start = Math.max(0, Math.floor(bodyTop / virtualization.rowHeight) - virtualization.overscanRows)
+    const end = Math.min(
+      rows.length,
+      Math.ceil((bodyTop + rowsGrid.clientHeight) / virtualization.rowHeight) + virtualization.overscanRows,
+    )
+    const fragment = document.createDocumentFragment()
+
+    if (start > 0) fragment.append(createSpacerRow(start * virtualization.rowHeight, columns.length))
+    for (let index = start; index < end; index += 1) fragment.append(createRow(rows[index], columns))
+    if (end < rows.length) fragment.append(createSpacerRow((rows.length - end) * virtualization.rowHeight, columns.length))
+
+    rowsBody.replaceChildren(fragment)
+  }
+
+  function scheduleVirtualRows() {
+    if (virtualRenderFrame) return
+    virtualRenderFrame = requestAnimationFrame(() => {
+      virtualRenderFrame = 0
+      renderVirtualRows()
+    })
+  }
+
+  function renderLoadStatus() {
+    loadStatus?.remove()
+    loadStatus = undefined
+    if (state.loadingMore) {
+      loadStatus = element("p", { class: "database-load-status", role: "status" }, locale === "ru" ? "Загружаю следующие строки…" : "Loading more rows…")
+    } else if (state.loadMoreError) {
+      loadStatus = element("button", { type: "button", class: "database-load-retry" }, locale === "ru" ? "Не удалось загрузить. Повторить" : "Could not load rows. Retry")
+      loadStatus.addEventListener("click", actions.loadMore)
+    }
+    if (loadStatus) mainContent.append(loadStatus)
+  }
+
+  function renderRows() {
+    const value = state.value
+    if (!value || !Array.isArray(value.rows)) {
+      mainContent.append(element("p", { class: "database-empty" }, locale === "ru" ? "Нет строк." : "No rows."))
+      return
+    }
+    const columns = value.columns ?? []
+    const table = element("table", { class: "database-grid" })
+    const { columnGroup, totalWidth } = createColumnGroup(columns, value.rows)
+    table.style.width = `${totalWidth}px`
+    const head = element("thead")
+    const header = element("tr")
+    for (const column of columns) {
+      const sort = element("button", { type: "button", class: "database-sort-button" }, `${column.column_name}${state.sortBy === column.column_name ? state.sortDirection === "asc" ? " ↑" : " ↓" : ""}`)
+      sort.addEventListener("click", () => actions.sortColumn(column.column_name))
+      header.append(element("th", {}, sort))
+    }
+    head.append(header)
+    rowsBody = element("tbody")
+    table.append(columnGroup, head, rowsBody)
+    rowsGrid = element("div", { class: "database-grid-wrap" })
+    rowsGrid.append(table)
+    rowsGrid.addEventListener("scroll", () => {
+      state.gridScrollPositions.rows = rowsGrid.scrollTop
+      scheduleVirtualRows()
+      if (rowsGrid.scrollHeight - rowsGrid.clientHeight - rowsGrid.scrollTop <= virtualization.fetchThreshold) actions.loadMore()
+    }, { passive: true })
+    mainContent.append(rowsGrid)
+    rowsGrid.scrollTop = state.gridScrollPositions.rows
+    renderVirtualRows()
+    renderLoadStatus()
+    requestAnimationFrame(() => {
+      renderVirtualRows()
+      if (rowsGrid.scrollHeight <= rowsGrid.clientHeight && value.hasMore && !state.loadingMore && !state.loadMoreError) actions.loadMore()
+    })
+  }
+
+  function appendRows() {
+    renderVirtualRows()
+    if (rowCountLabel) rowCountLabel.textContent = formatLoadedDatabaseRows(state.value)
+    renderLoadStatus()
+  }
+
+  function setLoadingMore() {
+    renderLoadStatus()
+  }
+
+  function showLoadMoreError() {
+    renderLoadStatus()
+  }
+
+  function render() {
+    renderTableList()
+    main.replaceChildren()
+    const heading = element("div", { class: "database-main-heading" })
+    heading.append(element("h4", {}, state.displayTable || state.selectedTable || (locale === "ru" ? "Выберите таблицу" : "Select a table")))
+    if (state.view === "rows" && state.value?.rows) {
+      rowCountLabel = element("span", { class: "database-row-count" }, formatLoadedDatabaseRows(state.value))
+      heading.append(rowCountLabel)
+    } else {
+      rowCountLabel = undefined
+    }
+    main.append(heading)
+
+    const tabs = element("div", { class: "database-view-tabs" })
+    viewTabs = tabs
+    viewButtons.clear()
+    for (const [view, label] of [["rows", locale === "ru" ? "Данные" : "Data"], ["schema", locale === "ru" ? "Структура" : "Columns"]]) {
+      const button = element("button", { type: "button", class: "database-view-tab", "aria-pressed": String(state.view === view) }, label)
+      button.disabled = !state.selectedTable
+      button.addEventListener("click", () => actions.selectView(view))
+      viewButtons.set(view, button)
+      tabs.append(button)
+    }
+    rowSearch.value = state.search
+    rowSearch.hidden = state.view !== "rows"
+    tabs.append(rowSearch)
+    viewLoading.hidden = true
+    viewLoading.dataset.state = ""
+    if (state.loading && state.value !== undefined) {
+      viewLoading.hidden = false
+      viewLoading.dataset.state = "loading"
+      viewLoading.textContent = locale === "ru" ? "Загрузка…" : "Loading…"
+      tabs.append(viewLoading)
+    }
+    main.append(tabs)
+    main.append(mainContent)
+    mainContent.replaceChildren()
+    if (state.loading) {
+      mainContent.append(element("p", { class: "database-empty" }, locale === "ru" ? "Загружаю данные…" : "Loading data…"))
+    } else if (state.error) {
+      mainContent.append(element("p", { class: "database-empty" }, state.error))
+    } else if (!state.selectedTable) {
+      mainContent.append(element("p", { class: "database-empty" }, state.tables.length ? locale === "ru" ? "Выберите таблицу слева." : "Select a table from the list." : locale === "ru" ? "В этой схеме нет таблиц." : "This schema has no tables."))
+    } else if (state.view === "schema") {
+      renderSchema()
+    } else if (state.view === "rows") {
+      renderRows()
+    } else {
+      mainContent.append(element("p", { class: "database-empty" }, locale === "ru" ? "Загружаю список таблиц…" : "Loading tables…"))
+    }
+  }
+
+  search.addEventListener("input", () => {
+    state.tableSearch = search.value
+    renderTableList()
+  })
+  rowSearch.addEventListener("input", () => actions.searchRows(rowSearch.value))
+  refreshButton.addEventListener("click", actions.refresh)
+
+  return { element: browser, render, appendRows, setLoadingMore, showLoadMoreError, setLoadingView, showViewError }
+}
+
+function formatDatabaseCount(value) {
+  try {
+    return new Intl.NumberFormat(locale).format(BigInt(value))
+  } catch {
+    return String(value ?? 0)
+  }
+}
+
+function formatLoadedDatabaseRows(value) {
+  const loaded = value.offset + value.rows.length
+  const total = formatDatabaseCount(value.totalRows ?? loaded)
+  const formattedLoaded = formatDatabaseCount(loaded)
+
+  return locale === "ru" ? `Загружено: ${formattedLoaded} из ${total}` : `Loaded: ${formattedLoaded} of ${total}`
+}
+
+function appendSearchHighlight(target, text, query) {
+  const normalizedQuery = query.toLocaleLowerCase(locale)
+  if (!normalizedQuery) {
+    target.append(document.createTextNode(text))
+    return
+  }
+
+  const normalizedText = text.toLocaleLowerCase(locale)
+  let start = 0
+  let matchIndex = normalizedText.indexOf(normalizedQuery, start)
+  while (matchIndex !== -1) {
+    if (matchIndex > start) target.append(document.createTextNode(text.slice(start, matchIndex)))
+    const matchEnd = matchIndex + normalizedQuery.length
+    target.append(element("mark", { class: "database-match" }, text.slice(matchIndex, matchEnd)))
+    start = matchEnd
+    matchIndex = normalizedText.indexOf(normalizedQuery, start)
+  }
+  if (start < text.length) target.append(document.createTextNode(text.slice(start)))
+}
+
+async function refreshResourceStatuses(profileId = resourceProfileSelect.value) {
   if (!selectedResourceNode || !inspectorAvailable) return
+  if (profileId !== resourceProfileSelect.value) return
   const items = resourceInspectorBody.querySelectorAll(".resource-item")
   await Promise.all([...items].map(async (item) => {
     const id = item.dataset.resourceId
     const status = item.querySelector(".resource-status")
     try {
-      const query = new URLSearchParams({ profileId: resourceProfileSelect.value, resourceId: id })
+      const query = new URLSearchParams({ profileId, resourceId: id })
       const response = await fetch(inspectorUrl(`/__resource-inspector/status?${query}`), { credentials: "same-origin", redirect: "error" })
       if (!response.ok) throw new Error()
       const value = await response.json()
+      if (profileId !== resourceProfileSelect.value || !status.isConnected) return
       status.dataset.state = value.state ?? "unknown"
       status.textContent = `${resourceStateLabel(value.state)} · ${new Date(value.checkedAt).toLocaleTimeString(locale)}`
       if (value.exitCode !== undefined) status.textContent += ` · exit ${value.exitCode}`
     } catch {
+      if (profileId !== resourceProfileSelect.value || !status.isConnected) return
       status.dataset.state = "unreachable"
       status.textContent = resourceText("resourceFailed", "Status unavailable")
     }
   }))
 }
 
-async function inspectResource(resourceId, view, result) {
-  result.hidden = false
-  result.textContent = resourceText("resourceLoading", "Loading…")
+async function inspectResource(resourceId, view, output, result, state, renderOutput, input = {}, append = false, databaseBrowser) {
+  const sequence = ++state.sequence
+  output.hidden = false
+  state.loading = !append
+  state.loadingMore = append
+  state.error = ""
+  state.loadMoreError = ""
+  state.loadingIndicator.hidden = true
+  output.setAttribute("aria-busy", "true")
+  if (state.database && append) databaseBrowser?.setLoadingMore()
+  else if (state.database) {
+    databaseBrowser?.setLoadingView(view)
+    if (databaseBrowser?.element.parentElement !== result) {
+      databaseBrowser?.render()
+      if (databaseBrowser) result.replaceChildren(databaseBrowser.element)
+    }
+  } else if (state.value !== undefined) {
+    state.loadingIndicator.hidden = false
+    state.loadingIndicator.dataset.state = "loading"
+    state.loadingIndicator.textContent = resourceText("resourceLoading", locale === "ru" ? "Загрузка…" : "Loading…")
+  } else {
+    result.replaceChildren(element("p", { class: "resource-notice" }, resourceText("resourceLoading", "Loading…")))
+  }
   try {
     const response = await fetch(inspectorUrl("/__resource-inspector/inspect"), {
       method: "POST",
       credentials: "same-origin",
       redirect: "error",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ profileId: resourceProfileSelect.value, resourceId, view }),
+      body: JSON.stringify({ profileId: resourceProfileSelect.value, resourceId, view, input }),
     })
     if (!response.ok) throw new Error()
-    const output = jsonBlock(await response.json())
-    result.replaceChildren(...output.childNodes)
+    const value = await response.json()
+    if (sequence !== state.sequence) return
+    state.value = append && Array.isArray(state.value?.rows) && Array.isArray(value.rows)
+      ? { ...value, offset: state.value.offset, rows: [...state.value.rows, ...value.rows] }
+      : value
+    state.loading = false
+    state.loadingMore = false
+    state.loadingIndicator.hidden = true
+    output.removeAttribute("aria-busy")
+    if (!append && view !== "tables" && state.database) state.displayTable = state.selectedTable
+    if (view !== "tables" && state.database) {
+      const cacheKey = JSON.stringify([state.selectedTable, view, view === "rows" ? state.sortBy : "", view === "rows" ? state.sortDirection : ""])
+      state.databaseCache[cacheKey] = state.value
+    }
+    if (view === "rows" && Array.isArray(value.rows)) state.offset = value.offset + value.rows.length
+    if (sequence === state.sequence) {
+      if (append && state.database) databaseBrowser?.appendRows()
+      else renderOutput()
+    }
   } catch {
-    result.textContent = resourceText("resourceFailed", "Inspection failed")
+    if (sequence === state.sequence) {
+      state.loading = false
+      state.loadingMore = false
+      output.removeAttribute("aria-busy")
+      if (append) {
+        state.loadMoreError = resourceText("resourceFailed", "Could not load more rows")
+        databaseBrowser?.showLoadMoreError()
+      } else {
+        state.error = resourceText("resourceFailed", "Inspection failed")
+        if (state.database) {
+          if (state.value !== undefined) databaseBrowser?.showViewError()
+          else renderOutput()
+        } else if (state.value !== undefined) {
+          state.loadingIndicator.hidden = false
+          state.loadingIndicator.dataset.state = "error"
+          state.loadingIndicator.textContent = state.error
+        } else {
+          result.replaceChildren(element("p", { class: "resource-notice" }, state.error))
+        }
+      }
+    }
+  }
+}
+
+async function refreshMapResourceStatuses() {
+  if (!inspectorAvailable || !resourceProfileSelect.value) return
+  const profileId = resourceProfileSelect.value
+  const nodes = data.tabs.flatMap((tab) => tab.diagrams.flatMap((diagram) => diagram.nodes))
+    .filter((node) => (node.resourceRefsByProfile?.[profileId] ?? []).length > 0)
+  const resourceIds = [...new Set(nodes.flatMap((node) => node.resourceRefsByProfile[profileId]))]
+  const statuses = new Map()
+
+  await Promise.all(resourceIds.map(async (resourceId) => {
+    try {
+      const query = new URLSearchParams({ profileId, resourceId })
+      const response = await fetch(inspectorUrl(`/__resource-inspector/status?${query}`), { credentials: "same-origin", redirect: "error" })
+      if (!response.ok) throw new Error()
+      statuses.set(resourceId, (await response.json()).state ?? "unknown")
+    } catch {
+      statuses.set(resourceId, "unreachable")
+    }
+  }))
+  if (profileId !== resourceProfileSelect.value) return
+
+  for (const node of nodes) {
+    const states = (node.resourceRefsByProfile[profileId] ?? []).map((id) => statuses.get(id) ?? "unknown")
+    const state = states.find((value) => ["stopped", "degraded", "unreachable"].includes(value))
+      ?? (states.every((value) => value === "running") ? "running" : states.includes("starting") ? "starting" : "unknown")
+    const group = document.querySelector(`.node[data-diagram-id="${CSS.escape(node.diagramId)}"][data-node-id="${CSS.escape(node.id)}"]`)
+    if (!group) continue
+    group.dataset.resourceState = state
+    const dot = group.querySelector(".resource-status-dot")
+    dot?.setAttribute("aria-label", resourceStateLabel(state))
+    const tooltip = group.querySelector(".resource-status-title")
+    if (tooltip) tooltip.textContent = resourceStateLabel(state)
+  }
+}
+
+function renderEventTimeline(value) {
+  const source = value && typeof value === "object"
+    ? Array.isArray(value.entries) ? value.entries : Array.isArray(value.lines) ? value.lines : []
+    : []
+  const events = source.map(normalizeTimelineEvent).filter((event) => event.time !== undefined)
+    .sort((left, right) => left.time - right.time)
+  if (!events.length) return element("p", { class: "timeline-empty" }, locale === "ru" ? "За выбранный период событий нет." : "No events in this time range.")
+
+  const padding = 30_000
+  const minimumTime = Math.min(...events.map(({ time }) => time))
+  const maximumTime = Math.max(...events.map(({ time, duration }) => time + duration))
+  const start = maximumTime === minimumTime ? minimumTime - padding : minimumTime
+  const end = maximumTime === minimumTime ? maximumTime + padding : maximumTime
+  const range = Math.max(1, end - start)
+  const timeline = element("section", { class: "event-timeline", "aria-label": locale === "ru" ? "Таймлайн событий" : "Event timeline" })
+  const axis = element("div", { class: "timeline-axis" })
+  axis.append(element("span", {}, locale === "ru" ? "Событие" : "Event"))
+  const ticks = element("div", { class: "timeline-ticks" })
+  const tickCount = 5
+  for (let index = 0; index < tickCount; index += 1) {
+    const tickTime = start + range * index / (tickCount - 1)
+    ticks.append(element("time", {}, new Date(tickTime).toLocaleTimeString(locale, { hour: "2-digit", minute: "2-digit", second: "2-digit" })))
+  }
+  axis.append(ticks)
+  timeline.append(axis)
+
+  for (const event of events) {
+    const row = element("details", { class: "timeline-row" })
+    const summary = element("summary")
+    const label = element("span", { class: "timeline-event-label" })
+    label.append(element("span", { class: "timeline-event-title" }, event.title))
+    label.append(element("span", { class: "timeline-event-meta" }, `${new Date(event.time).toLocaleTimeString(locale)}${event.meta ? ` · ${event.meta}` : ""}`))
+    const track = element("span", { class: "timeline-track" })
+    const left = Math.max(0, Math.min(100, (event.time - start) / range * 100))
+    const width = event.duration ? Math.max(.7, Math.min(100 - left, event.duration / range * 100)) : .7
+    track.append(element("span", { class: "timeline-bar", "data-level": event.level, "data-status": event.status, "aria-hidden": "true" }))
+    track.firstElementChild.style.setProperty("--timeline-start", `${left}%`)
+    track.firstElementChild.style.setProperty("--timeline-width", `${width}%`)
+    summary.append(label, track)
+    row.append(summary, element("div", { class: "timeline-event-detail" }, jsonBlock(event.source)))
+    timeline.append(row)
+  }
+
+  return timeline
+}
+
+function normalizeTimelineEvent(value) {
+  const source = value && typeof value === "object" ? value : { message: String(value) }
+  const rawTime = source.time ?? source.timestamp ?? source.startedAt ?? source.createdAt ?? source.ts
+  const numericTime = typeof rawTime === "number" || typeof rawTime === "string" && /^\d+(?:\.\d+)?$/.test(rawTime)
+    ? Number(rawTime)
+    : Number.NaN
+  const time = Number.isFinite(numericTime)
+    ? numericTime > 100_000_000_000_000 ? numericTime / 1_000_000 : numericTime > 10_000_000_000 ? numericTime : numericTime * 1_000
+    : Date.parse(String(rawTime ?? ""))
+  const duration = Number(source.durationMs ?? source.duration ?? 0)
+  const title = source.method && source.path ? `${source.method} ${source.path}` : String(source.msg ?? source.message ?? source.detail ?? source.context ?? source.name ?? "Event")
+  const meta = [source.statusCode ?? source.status, Number.isFinite(duration) && duration > 0 ? `${duration} ms` : undefined]
+    .filter((part) => part !== undefined).join(" · ")
+
+  return {
+    source,
+    time: Number.isFinite(time) ? time : undefined,
+    duration: Number.isFinite(duration) ? Math.max(0, duration) : 0,
+    title,
+    meta,
+    level: typeof source.level === "number"
+      ? source.level >= 40 ? "error" : source.level >= 30 ? "info" : "debug"
+      : String(source.level ?? "").toLowerCase().includes("error") ? "error"
+      : String(source.level ?? "").toLowerCase().includes("warn") ? "warn" : String(source.level ?? "").toLowerCase(),
+    status: Number(source.statusCode ?? source.status) >= 400 ? "error" : "ok",
   }
 }
 
@@ -381,7 +1143,7 @@ function renderSchema(name, schema, depth = 0, required = false) {
 }
 
 function activateTab(index, updateHash = true) {
-  for (const [tabIndex, tab] of [...tabList.children].entries()) {
+  for (const [tabIndex, tab] of [...tabList.querySelectorAll('[role="tab"]')].entries()) {
     tab.setAttribute("aria-selected", String(tabIndex === index))
     panels.children[tabIndex].hidden = tabIndex !== index
   }
@@ -489,6 +1251,7 @@ function renderDiagram(diagram) {
       "data-kind": node.kind ?? "api",
       "data-endpoint-ids": (node.endpointIds ?? []).join(" "),
       "data-resource-node": hasResources ? "true" : "false",
+      ...(hasResources ? { "data-resource-state": "unknown" } : {}),
       tabindex: hasEndpoints || hasResources ? "0" : "-1",
       role: hasEndpoints || hasResources ? "button" : "group",
       "aria-label": localized("nodes", `${diagram.id}:${node.id}`, "title", node.title),
@@ -501,6 +1264,22 @@ function renderDiagram(diagram) {
         x: node.x + node.width / 2,
         y: node.y + node.height / 2 + 19,
       }, localized("nodes", `${diagram.id}:${node.id}`, "subtitle", node.subtitle)))
+    }
+    if (hasResources) {
+      group.append(svgElement("circle", {
+        class: "resource-status-pulse",
+        cx: node.x + node.width - 10,
+        cy: node.y + 10,
+        r: "2.5",
+      }))
+      group.append(svgElement("circle", {
+        class: "resource-status-dot",
+        cx: node.x + node.width - 10,
+        cy: node.y + 10,
+        r: "2.5",
+        "aria-label": resourceStateLabel("unknown"),
+      }))
+      group.append(svgElement("title", { class: "resource-status-title" }, resourceStateLabel("unknown")))
     }
     svg.append(group)
   }
@@ -566,7 +1345,15 @@ function findResourceNode(diagramId, nodeId) {
   return data.tabs.flatMap((tab) => tab.diagrams).find((diagram) => diagram.id === diagramId)?.nodes.find((node) => node.id === nodeId)
 }
 
+let previousTabGroup
 data.tabs.forEach((tab, index) => {
+  if (tab.group && tab.group !== previousTabGroup) {
+    const heading = tab.group === "data-model"
+      ? ui("dataModelGroup", "Data model")
+      : ui("processesGroup", "Processes and services")
+    tabList.append(element("span", { class: "tab-group-heading", "aria-hidden": "true" }, heading))
+    previousTabGroup = tab.group
+  }
   const tabTitle = localized("tabs", tab.id, "title", tab.title)
   const button = element("button", { type: "button", role: "tab", "aria-selected": "false" }, tabTitle)
   button.addEventListener("click", () => activateTab(index))

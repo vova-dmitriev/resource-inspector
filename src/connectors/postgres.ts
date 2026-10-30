@@ -16,6 +16,8 @@ const PostgresPolicy = {
   TimeoutMs: 4_000,
   MaximumTables: 100,
   MaximumRows: 50,
+  MaximumOffset: 1_000_000,
+  MaximumSearchLength: 256,
 } as const
 
 type DatabaseClient = Readonly<{
@@ -36,6 +38,7 @@ export function createPostgresConnector(
   const schema = readSchema(configuration)
   const resources = configuration.resources.map((resource) => ({
     ...resource,
+    kind: "database",
     views: ["status", "tables", "schema", "rows"],
   }))
 
@@ -86,17 +89,49 @@ export function createPostgresConnector(
 
       if (view === "rows") {
         return runReadOnly(async (client) => {
-          const table = requireTable(await readTables(client, schema), input.table)
+          const tableSchema = await readColumns(client, schema, input.table)
           const requested = Number(input.limit ?? PostgresPolicy.MaximumRows)
+          const requestedOffset = Number(input.offset ?? 0)
 
           const limit = Math.max(
             1,
             Math.min(PostgresPolicy.MaximumRows, Math.floor(Number.isFinite(requested) ? requested : PostgresPolicy.MaximumRows)),
           )
+          const offset = Math.max(
+            0,
+            Math.min(PostgresPolicy.MaximumOffset, Math.floor(Number.isFinite(requestedOffset) ? requestedOffset : 0)),
+          )
+          const search = typeof input.search === "string" ? input.search.trim().slice(0, PostgresPolicy.MaximumSearchLength) : ""
+          const searchPredicate = search ? buildSearchPredicate(tableSchema.columns) : ""
+          const searchClause = searchPredicate ? ` WHERE ${searchPredicate}` : ""
+          const count = await client.query<{ total_rows: string }>(
+            `SELECT COUNT(*)::text AS total_rows FROM ${quoteIdentifier(schema)}.${quoteIdentifier(tableSchema.table)}${searchClause}`,
+            search ? [search] : [],
+          )
+          const sortColumn = typeof input.sortBy === "string"
+            ? tableSchema.columns.find(({ column_name }) => column_name === input.sortBy)?.column_name
+            : undefined
+          const sortDirection = input.sortDirection === "desc" ? "DESC" : "ASC"
+          const orderBy = sortColumn ? ` ORDER BY ${quoteIdentifier(sortColumn)} ${sortDirection}` : ""
+          const limitParameter = search ? 2 : 1
+          const offsetParameter = limitParameter + 1
+          const values = search ? [search, limit + 1, offset] : [limit + 1, offset]
 
-          const rows = await client.query(`SELECT * FROM ${quoteIdentifier(schema)}.${quoteIdentifier(table)} LIMIT $1`, [limit])
+          const rows = await client.query(
+            `SELECT * FROM ${quoteIdentifier(schema)}.${quoteIdentifier(tableSchema.table)}${searchClause}${orderBy} LIMIT $${limitParameter} OFFSET $${offsetParameter}`,
+            values,
+          )
+          const hasMore = rows.rows.length > limit && offset < PostgresPolicy.MaximumOffset
 
-          return { rows: rows.rows.map((row) => redact(row)) }
+          return {
+            table: tableSchema.table,
+            columns: tableSchema.columns,
+            rows: rows.rows.slice(0, limit).map((row) => redact(row)),
+            offset,
+            limit,
+            totalRows: count.rows[0]?.total_rows ?? "0",
+            hasMore,
+          }
         })
       }
 
@@ -137,6 +172,14 @@ function requireTable(tables: readonly string[], value: unknown) {
   if (typeof value !== "string" || !tables.includes(value)) throw new Error(OperationalText.UnknownTable)
 
   return value
+}
+
+function buildSearchPredicate(columns: readonly { column_name: string }[]) {
+  if (!columns.length) return "FALSE"
+
+  return columns
+    .map(({ column_name }) => `POSITION(lower($1) IN lower(${quoteIdentifier(column_name)}::text)) > 0`)
+    .join(" OR ")
 }
 
 function readSchema(configuration: ConnectorConfiguration) {
